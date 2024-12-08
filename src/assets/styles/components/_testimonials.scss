@@ -1,0 +1,54 @@
+@use "../base" as base;
+
+.testimonials {
+    padding: 2rem;
+    text-align: center;
+    background-color: base.$secondary-background-color;
+  
+    h1 {
+      margin-bottom: 2rem;
+      font-size: 2rem;
+      color: base.$highlight-color;
+    }
+  
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+  
+    .testimonial {
+      background-color: base.$secondary-color;
+      padding: 1.5rem;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  
+      img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        margin-bottom: 1rem;
+      }
+  
+      h3 {
+        margin: 0.5rem 0;
+        font-size: 1.25rem;
+        color: base.$light-color;
+      }
+  
+      p {
+          color: base.$light-color;
+        font-size: 0.9rem;
+      }
+  
+      .rating {
+        margin-top: 1rem;
+        color: base.$highlight-color;
+      }
+    }
+  }
+  

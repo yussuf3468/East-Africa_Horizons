@@ -1,0 +1,134 @@
+@use "../base" as base;
+
+.featured-destinations {
+    text-align: center;
+    padding: 2rem;
+     background-color: base.$background-custom-color; 
+  
+    h1 {
+      font-size: 3rem;
+      color: base.$light-color;
+      margin-bottom: 2rem;
+    }
+  
+    .destinations-grid {
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: repeat( auto-fit, minmax(250px, 1fr)); // Responsive columns
+      padding: 0 1rem;
+  
+      .item {
+        background-color: base.$secondary-background-color;
+        border-radius: 10px;
+        overflow: hidden;
+  
+        img {
+          width: 100%;
+          height: 200px;
+          object-fit: cover;
+        }
+  
+        h4 {
+          font-size: 1.5rem;
+          margin: 1rem 0 0.5rem;
+          color: base.$light-color;
+        }
+  
+        p {
+          font-size: 1rem;
+          padding: 0 1rem;
+          color: base.$light-color;
+        }
+        
+  
+        button {
+          margin: 1rem;
+          padding: 0.5rem 1rem;
+          background-color: #007bff;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          font-size: 1rem;
+          transition: background-color 0.3s ease;
+  
+          &:hover {
+            background-color: #0056b3;
+          }
+        }
+      }
+    }
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.8);
+      display: flex;
+      // flex: 0 0 100%;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      flex-wrap: wrap;
+    }
+    
+    .modal-content {
+      background-color: base.$background-custom-color;
+      padding: 2rem;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 100%;
+      // text-align: center;
+      // align-items: center;
+      // flex: 0 0 100%;
+      position: relative;
+    }
+    
+    .modal img {
+      max-width: 100%;
+      // flex: 0 0 100%;
+      height: 80vh;
+      border-radius: 8px;
+    }
+    
+    .modal-content h2 {
+      font-size: 2rem;
+      color: base.$light-color;
+      margin: 1rem 0;
+      text-align: left ;
+    }
+    
+    .modal-content p {
+      font-size: 1rem;
+      color: base.$light-color;
+      text-align: left;
+      line-height: 1.5;
+    }
+    
+    .close-button {
+      position: absolute;
+      top: -23px;
+      right: 1.2rem;
+      background: none;
+      border: none;
+      font-size: 3rem;
+      color: #333;
+      cursor: pointer;
+      color: base.$light-color;
+    }
+    
+    .byline {
+      font-style: italic;
+      font-size: 1rem;
+      color: #666;
+      margin-bottom: 1rem;
+      text-align: left;
+    }
+    @media (max-width: 768px) {
+      .modal img{
+        height: auto;
+      }
+    }
+  }
+  

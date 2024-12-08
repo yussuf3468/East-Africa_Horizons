@@ -1,0 +1,68 @@
+@use "../base" as base;
+.hero-section {
+    @include base.flex-center; /* Custom mixin for centering */
+    flex-direction: column;
+    margin: 0.2rem;
+  
+    h1 {
+      font-family: "Montserrat", sans-serif;
+      font-size: 5rem; /* Large for desktop */
+      color: base.$light-color;
+      text-align: center;
+      font-weight: 600;
+    }
+  
+    h4 {
+      font-size: 1.8rem;
+      color: base.$light-color;
+      text-align: center;
+    }
+  
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: transparent;
+      border: 1px solid base.$light-color;
+      color: base.$light-color;
+      cursor: pointer;
+      font-size: 1rem;
+      border-radius: 20px;
+  
+      &:hover {
+        background-color: #194574;
+      }
+    }
+  
+    // Responsive Design for Tablets
+  @media (max-width: 1024px) {
+    h1 {
+      font-size: 3rem;
+    }
+
+    h4 {
+      font-size: 1.25rem;
+    }
+
+    button {
+      padding: 0.6rem 1.25rem;
+      font-size: 0.9rem;
+    }
+  }
+
+  // Responsive Design for Mobile
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    h4 {
+      font-size: 1.2rem;
+    }
+
+    button {
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
+    }
+  }
+  }
+  

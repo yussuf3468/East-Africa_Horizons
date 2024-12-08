@@ -1,0 +1,10 @@
+@use "./base/index" as base; // Use the bundled base styles
+
+@use "./components/_navbar.scss";
+@use "./components/_hero.scss";
+@use "./components/_footer.scss";
+@use "./components/_testimonials.scss";
+@use "./components/_blog-post.scss";
+@use "./components/_frames.scss";
+@use "./components/_newsletter.scss";
+@use "./components/_Footer.scss";

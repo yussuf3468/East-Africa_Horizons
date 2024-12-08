@@ -1,0 +1,26 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+$primary-color: #0c131a;
+$light-color: #fff;
+$light-color-alt: #afb6cd;
+$primary-background-color: #010d1a00;
+$background-custom-color: #0e0f19;
+$secondary-background-color: #252830;
+$hover-light-color: var($light-color);
+$hover-dark-color: var($primary-background-color);
+$transparent-light-color: rgba(255, 255, 255, 0.05);
+$transparent-dark-color: rgba(0, 0, 0, 0.75);
+$font-size-xsm: 1.2rem;
+$font-size-sm: 1.6rem;
+$font-size-md: 2rem;
+$font-size-lg: 3rem;
+$font-size-xl: 4rem;
+$gap: 2rem;
+$margin-sm: 1rem;
+$margin-md: 3rem;
+$secondary-color: #393e46;
+$highlight-color: #ffd369;
+
