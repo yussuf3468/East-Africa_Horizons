@@ -11,7 +11,7 @@ import Bali from "../assets/images/Bali.jpg";
 import ParisDisc from '../assets/images/parisDesc.jpg'
 import TokyoDisc from '../assets/images/tokyoDesc.jpg'
 import NewYorkDisc from '../assets/images/NewYorkDesc.jpg'
-import SydneyDisc from '../assets/images/sydneyDesc.jpg'
+import SydneyDisc from '../assets/images/SydneyDesc.jpg'
 import IstanbulDisc from '../assets/images/istanbulDesc.jpeg'
 import DubaiDisc from '../assets/images/DubaiDesc.jpeg'
 import CapeTownDisc from '../assets/images/CapeTownDesc.jpeg'
