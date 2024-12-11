@@ -5,18 +5,10 @@ const cors = require('cors');
 
 const app = express();
 
-app.use(express.json()); // This parses JSON bodies
-app.use(express.urlencoded({ extended: true })); // This handles URL-encoded form data
+app.use(express.json()); // Parse JSON bodies
+app.use(express.urlencoded({ extended: true }));
 
-
-app.use(
-  cors({
-    origin: "http://localhost:5173", // Your React app's URL
-    methods: ["GET", "POST"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  })
-);
-
+app.use(cors());
 
 mongoose
   .connect(process.env.MONGO_URI)
