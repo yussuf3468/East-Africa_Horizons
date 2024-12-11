@@ -111,16 +111,15 @@
         max-width: 100%;
       }
     }
+
+    .carousel-control-prev,
+  .carousel-control-next {
+    width: 40px;
   }
-  
-  .carousel-control-next,
-  .carousel-control-prev {
-    width: 40px; // Adjust size of next/prev controls for mobile
-  }
-  
+
   .carousel-control-prev-icon,
   .carousel-control-next-icon {
-    width: 30px; // Adjust icon size for mobile
+    width: 30px;
     height: 30px;
   }
-  
+  }

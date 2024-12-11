@@ -1,157 +1,188 @@
 @use "../base" as base;
 
+// Hero Section
 .hero-container {
-    min-height: 100vh;
-    width: 100%;
-    background-image: url('/src//assets/images/heroImg3.jpeg');
-    background-size: cover;
-    background-position: center;
-    position: relative;
-  }
-  
-  img {
-    width: 100%;
-  }
-  
-  .navbar {
+  min-height: 100vh;
+  width: 100%;
+  background: url('/src/assets/images/heroImg3.jpeg') center/cover no-repeat;
+  position: relative;
+}
+
+// Images
+img {
+  width: 100%;
+}
+
+// Navbar
+.navbar {
   @include base.flex-center;
-  
-    span {
-      font-family: 'Clicker Script', cursive;
-      font-size: 40px;
-      color: base.$light-color;
-      margin-left: 1rem;
-    }
-  
-    p {
-      margin-right: 15rem;
-      color: base.$light-color;
-      margin-bottom: 0 !important;
-      size: base.$font-size-xl;
-    }
-  
-    .navbar-nav {
-      display: flex;
-      align-items: center;
-  
-      .nav-item a {
-        margin-left: 15px;
-        color: base.$light-color !important;
-        &:hover{
-          text-decoration: underline;
-        }
+
+  span {
+    font-family: 'Clicker Script', cursive;
+    font-size: base.$font-size-lg;
+    color: base.$light-color;
+    margin-left: 1rem;
+  }
+
+  h1 {
+    margin-right: 15rem;
+    color: base.$light-color;
+    margin-bottom: 0 !important;
+    font-size: base.$font-size-md;
+  }
+
+  .navbar-nav {
+    display: flex;
+    align-items: center;
+
+    .nav-item a {
+      margin-left: 15px;
+      color: base.$light-color !important;
+
+      &:hover {
+        text-decoration: underline;
       }
     }
-  
-    .form-control {
-      margin-left: 10px;
+  }
+
+  .form-control {
+    margin-left: 10px;
+  }
+
+  // Toggler Styles
+  .navbar-toggler {
+    color: white;
+    border-color: white;
+
+    &::before,
+    &::after,
+    span {
+      content: '';
+      display: block;
+      height: 2px;
+      width: 20px;
+      background-color: white;
+      margin: 4px auto;
+    }
+  }
+  // Styling for the welcome message
+.welcome-message {
+  font-size: 1.2rem;
+  color: #a8dadc; // Light cyan color for the welcome message
+  font-weight: 600;
+  margin-right: 10px;
+
+  .username {
+    color: #f1faee; // Off-white for the username
+    font-weight: 700;
+    text-transform: capitalize;
+  }
+}
+
+// Styling for the logout button
+.logout-btn {
+  font-size: 0.9rem;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #ffadad; // Soft red on hover
+  }
+}
+
+}
+
+// Media Queries
+@media (max-width: 996px) {
+  .hero-container {
+    min-height: 70vh;
+  }
+
+  .navbar {
+    .navbar-toggler {
+      align-self: flex-end;
+      margin-bottom: 1rem;
     }
 
-    .navbar-toggler {
-      color: white; /* Makes the toggler button text/icon white */
-      border-color: white; /* Makes the border white */
-    
-      .navbar-toggler-icon {
-        background-image: none; /* Remove the default Bootstrap icon */
-      }
-    
-      /* Custom styles for the three lines */
-      &::before, &::after, span {
-        content: '';
-        display: block;
-        height: 2px; /* Line thickness */
-        width: 20px; /* Line width */
-        background-color: white; /* Line color */
-        margin: 4px auto; /* Space between lines */
-      }
+    h1 {
+      margin-right: 2rem;
     }
-    
-    // Mobile-specific adjustments
-    @media (max-width: 768px) {
-  
-      .navbar-toggler {
-        align-self: flex-end; /* Position the toggler to the right */
-        margin-bottom: 1rem;
-      }
-  
-        p {
-          margin-right: 2rem; /* Reduce margin-right on mobile screens */
-        }
-    
-      .navbar-collapse {
-        display: flex;
-        flex-direction: column; /* Stack nav items vertically */
-        align-items: center; /* Center align nav items */
+
+    .navbar-collapse {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      border-radius: 10px;
+      padding: 1rem;
+    }
+
+    .navbar-nav {
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      margin-top: 1rem;
+
+      .nav-item {
+        margin: 0.5rem 0;
+        text-align: center;
         width: 100%;
-        background-color: rgba(0, 0, 0, 0.8); /* Background for the collapsible menu */
-        border-radius: 10px;
-        padding: 1rem;
-      }
-    
-      .navbar-nav {
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-        margin-top: 1rem;
-    
-        .nav-item {
-          margin: 0.5rem 0;
-          width: 100%;
-          text-align: center;
-    
-          a {
-            display: block;
-            color: white !important; /* Ensure links are visible */
-            padding: 0.5rem;
-            background-color: rgba(255, 255, 255, 0.1); /* Add a slight background */
-            border-radius: 5px;
-    
-            &:hover {
-              background-color: rgba(255, 255, 255, 0.2);
-            }
-          }
-        }
-      }
-    
-      .d-flex.align-items-center {
-        flex-direction: column; /* Stack buttons/icons */
-        align-items: flex-start; /* Align buttons to the left */
-        margin-top: 1rem;
-    
-        .btn {
-          width: 100%; /* Buttons take full width */
-          text-align: left; /* Align text to the left */
-          margin-bottom: 0.5rem; /* Space between buttons */
-        }
-    
-        .btn-outline-secondary {
-          background-color: transparent;
-          color: white;
-          border-color: white;
-    
-          i {
-            margin-right: 0.5rem;
-          }
-    
+
+        a {
+          display: block;
+          color: white !important;
+          padding: 0.5rem;
+          background-color: rgba(255, 255, 255, 0.1);
+          border-radius: 5px;
+
           &:hover {
             background-color: rgba(255, 255, 255, 0.2);
           }
         }
       }
-      .btn-outline-secondary:nth-child(2), /* Search icon */
-    .btn-outline-secondary:nth-child(3) { /* Profile icon */
-      display: none;
     }
+
+    .d-flex.align-items-center {
+      flex-direction: column;
+      align-items: flex-start;
+      margin-top: 1rem;
+
+      .btn {
+        width: 100%;
+        text-align: left;
+        margin-bottom: 0.5rem;
+      }
+
+      .btn-outline-secondary {
+        background-color: transparent;
+        color: white;
+        border-color: white;
+
+        i {
+          margin-right: 0.5rem;
+        }
+
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.2);
+        }
+      }
+
+      // Hide unnecessary buttons
+      .btn-outline-secondary:nth-child(2),
+      .btn-outline-secondary:nth-child(3) {
+        display: none;
+      }
     }
     
-    
-   
   }
-  
-  @media (max-width: 768px) {
-    .hero-container {
-      min-height: 60vh;
-      background-size: cover; // Ensure the image resizes appropriately
-      background-position: center; // Center the image
-    }
+}
+
+@media (max-width: 768px) {
+  .hero-container {
+    min-height: 60vh;
+  }
 }
