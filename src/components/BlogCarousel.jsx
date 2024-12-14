@@ -22,13 +22,11 @@ const BlogPosts = () => {
             <div className="row">
               <div className="col-md-4 col-4">
                 <article className="post">
-                  <a href="blog.html?id=1">
                     <img
                       src={heroImage2}
                       className="d-block w-100"
                       alt="Blog post image"
                     />
-                  </a>
                   <div className="content">
                     <h2>7 Hidden Gems You Must Visit This Year</h2>
                   </div>
@@ -36,13 +34,11 @@ const BlogPosts = () => {
               </div>
               <div className="col-md-4 col-4">
                 <article className="post">
-                  <a href="blog.html?id=2">
                     <img
                       src={budgetTrip}
                       className="d-block w-100"
                       alt="Blog post image"
                     />
-                  </a>
                   <div className="content">
                     <h2>Ultimate Budget Tips for Your Next Adventure</h2>
                   </div>
@@ -50,13 +46,11 @@ const BlogPosts = () => {
               </div>
               <div className="col-md-4 col-4">
                 <article className="post">
-                  <a href="blog.html?id=3">
                     <img
                       src={experience}
                       className="d-block w-100"
                       alt="Blog post image"
                     />
-                  </a>
                   <div className="content">
                     <h2>Immersive Travel Experiences to Transform Your Perspective</h2>
                   </div>
@@ -70,13 +64,11 @@ const BlogPosts = () => {
             <div className="row">
               <div className="col-md-4 col-4">
                 <article className="post">
-                  <a href="blog.html?id=4">
                     <img
                       src={gear}
                       className="d-block w-100"
                       alt="Blog post image"
                     />
-                  </a>
                   <div className="content">
                     <h2>Essential Gear Every Traveler Needs for a Smooth Journey</h2>
                   </div>
@@ -84,13 +76,11 @@ const BlogPosts = () => {
               </div>
               <div className="col-md-4 col-4">
                 <article className="post">
-                  <a href="blog.html?id=5">
                     <img
                       src={safety}
                       className="d-block w-100"
                       alt="Blog post image"
                     />
-                  </a>
                   <div className="content">
                     <h2>How to Stay Safe While Traveling Solo</h2>
                   </div>

@@ -13,6 +13,7 @@ import Register from './components/Register'; // Import the Register component
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import BlogPage from './components/BlogPage';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
             </>
           }
         />
+        <Route path='/blog' element={<BlogPage/>}/>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>

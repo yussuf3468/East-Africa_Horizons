@@ -2,6 +2,8 @@ const express = require('express');
 const bcrypt = require('bcrypt'); // hash passwords
 const jwt = require('jsonwebtoken');
 const User = require('../modules/userModel'); // user template/schema
+// Comment schema
+const Comment = require('../modules/commentModel'); // comment template/schema
 const router = express.Router();
 
 // User Registration Endpoint
@@ -57,6 +59,41 @@ router.post('/login', async (req, res) => {
     res.status(200).json({ success: true, message: 'Login is successful', token, username: user.username });
   } catch (err) {
     res.status(500).json({ success: false, message: 'Error logging in the user', error: err.message });
+  }
+});
+
+// Add a new comment
+router.post('/comments', async (req, res) => {
+  try {
+    const { username, text, postId } = req.body;
+
+    if (!username || !text || !postId) {
+      return res.status(400).json({ error: "Missing required fields" });
+    }
+
+    // Save the comment to the database
+    const newComment = new Comment({
+      username,
+      text,
+      postId, // Add postId if you're associating comments with posts
+    });
+
+    const savedComment = await newComment.save();
+    res.status(201).json(savedComment);
+  } catch (error) {
+    console.error("Error saving comment:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+
+// Get comments for a specific blog post
+router.get("/comments/:postId", async (req, res) => {
+  try {
+    const comments = await Comment.find({ postId: req.params.postId });
+    res.status(200).json(comments);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
 });
 
