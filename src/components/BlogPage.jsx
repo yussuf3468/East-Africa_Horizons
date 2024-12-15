@@ -9,7 +9,7 @@ import post5 from "../assets/images/frames (10).jpg";
 import post6 from "../assets/images/frames (11).jpg";
 import post7 from "../assets/images/frames (12).jpg";
 import post8 from "../assets/images/blog-post-8.jpg";
-import logo from "../assets/images/logo1.png"
+import logo from "../assets/images/logo2.webp"
 
 const BlogPage = () => {
   const [author, setAuthor] = useState(null);
@@ -21,7 +21,7 @@ const BlogPage = () => {
     {
       id: 1,
       title: "7 Hidden Gems You Must Visit This Year",
-      image: post1,
+      image: post4,
       content: `The world is full of undiscovered treasures just waiting to be explored. 
       From remote islands to secret towns, here are seven hidden gems you must visit this year.`,
     },
@@ -40,7 +40,7 @@ const BlogPage = () => {
     {
       id: 4,
       title: "5 Travel Hacks for Beginners",
-      image: post4,
+      image: post1,
       content: `Travel smarter with these five beginner-friendly hacks that will make your journey seamless.`,
     },
     {

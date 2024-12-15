@@ -16,65 +16,109 @@ body {
   padding: 0 15px;
 }
 
-.navbar1.modern-navbar {
-  background: linear-gradient(135deg, #3e8e8e, #60a5a5);
-  padding: 1rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+// Variables for styling
+$bg-color: #1f1f1f;
+$text-color: #ffffff;
+$hover-color: #00bcd4;
+$cta-bg-color: #00bcd4;
+$cta-text-color: #ffffff;
+$font-family: 'Arial', sans-serif;
+
+.navbar1 {
+  background-color: $bg-color;
+  padding: 0.8rem 2rem;
+  font-family: $font-family;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  position: sticky;
-  top: 0;
-  position: relative;
-  z-index: 1000;
+
+  &.modern-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .navbar-brand {
+    display: flex;
+    align-items: center;
+    color: $text-color;
+    text-decoration: none;
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+
+    .navbar-logo {
+      height: 50px;
+      width: 50px;
+      margin-right: 0.8rem;
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    }
+  }
+
+  .navbar-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    margin: 0;
+
+    li {
+      .nav-link1 {
+        color: $text-color;
+        text-decoration: none;
+        font-size: 1rem;
+        font-weight: 500;
+        padding: 0.3rem 0;
+        transition: color 0.3s ease, border-bottom 0.3s ease;
+
+        &:hover {
+          color: $hover-color;
+          border-bottom: 2px solid $hover-color;
+        }
+      }
+
+      // Call-to-action (CTA) link
+      .nav-cta {
+        background-color: $cta-bg-color;
+        color: $cta-text-color;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+
+        &:hover {
+          background-color: $cta-bg-color;
+          transform: scale(1.05);
+        }
+      }
+    }
+  }
 }
 
-.navbar-container {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  color: #ffffff;
+// Responsive styling
+@media screen and (max-width: 768px) {
+  .navbar1 {
+    flex-direction: column;
+    align-items: center;
+
+    .navbar-container {
+      flex-direction: column;
+
+      .navbar-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+    }
+  }
 }
 
-.navbar-brand {
-  display: flex;
-  align-items: center;
-  font-size: 1.5rem;
-  color: #ffffff;
-  text-decoration: none;
-  flex: 1;
-}
-
-.navbar-logo {
-  width: 40px;
-  height: 40px;
-  margin-right: 10px;
-  border-radius: 50%;
-}
-
-.navbar-links {
-  display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-// .navbar-links li {
-//   // margin-left: 12rem;
-// }
-
-.nav-link1 {
-  color: #ffffff;
-  text-decoration: none;
-  font-size: 1rem;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  transition: background-color 0.3s ease;
-}
-
-.nav-link1:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-}
 
 /* Blog Main Section */
 .blog-main {
@@ -253,4 +297,134 @@ button:hover {
 .popular-post h4 {
   font-size: 1rem;
   color: #34495e;
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+  .blog-main {
+    flex: 2;
+  }
+
+  .featured h1 {
+    font-size: 1.6rem;
+  }
+
+  .comments-section h3 {
+    font-size: 1.2rem;
+  }
+
+  .author h3 {
+    font-size: 1.4rem;
+  }
+
+  .author p {
+    font-size: 0.9rem;
+  }
+
+  .popular-posts h3 {
+    font-size: 1.2rem;
+  }
+
+  .popular-post h4 {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Stack sidebar and main content on smaller screens */
+  .container {
+    display: block;
+  }
+
+  .blog-main {
+    flex: none;
+    margin-bottom: 20px; /* Space between main and sidebar */
+  }
+
+  .blog-sidebar {
+    flex: none;
+  }
+
+  /* Adjust images */
+  .featured-image {
+    max-width: 100%;
+  }
+
+  .popular-post-image {
+    width: 50px;
+    height: 50px;
+  }
+
+  .author-image {
+    width: 80px;
+    height: 80px;
+  }
+
+  .featured h1 {
+    font-size: 1.4rem;
+  }
+
+  .description {
+    font-size: 0.9rem;
+  }
+
+  .comments-section h3 {
+    font-size: 1.2rem;
+  }
+
+  .comment-icon {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+  }
+
+  .comment-content i {
+    font-size: 0.8rem;
+  }
+
+  .comments-section button {
+    font-size: 0.9rem;
+    padding: 8px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-links {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .navbar-links li {
+    margin: 5px 0;
+  }
+
+  .logo {
+    width: 150px;
+  }
+
+  .popular-posts {
+    padding: 15px;
+  }
+
+  .popular-post h4 {
+    font-size: 0.9rem;
+  }
+
+  .featured h1 {
+    font-size: 1.2rem;
+  }
+
+  .description {
+    font-size: 0.8rem;
+  }
+
+  .comments-section textarea {
+    font-size: 0.9rem;
+  }
+
+  .comments-section button {
+    font-size: 0.9rem;
+    padding: 8px 15px;
+  }
 }

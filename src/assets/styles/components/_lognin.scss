@@ -1,16 +1,16 @@
 /* Register Page */
-body {
-  // background-image: url('/src/assets/images/blog-post-6.jpg');
-   
-    .container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      height: 100%;
-      margin-top: 30px;
-      font-family: Arial, sans-serif;
-    }
+.container1 {
+  background-image: url('/src/assets/images/blog-post-6.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Uncommented to vertically center the form */
+  width: 100%;
+  height: 100vh; /* Ensures the height spans the full viewport */
+  font-family: Arial, sans-serif;
+}
   
     .form-card,
     .form-card1 {
@@ -102,5 +102,4 @@ body {
         }
       }
     }
-  }
   
