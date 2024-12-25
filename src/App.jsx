@@ -15,6 +15,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import BlogPage from './components/BlogPage';
 import Contact from './components/Contact';
+import Categories from './components/Categories';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           }
         />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/categories" element={<Categories/>} />
         <Route path='/blog' element={<BlogPage/>}/>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
