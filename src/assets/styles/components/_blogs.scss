@@ -265,125 +265,198 @@ button:hover {
 /* Popular Posts Section */
 .popular-posts {
   background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.popular-posts:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .popular-posts h3 {
-  font-size: 1.4rem;
-  margin-bottom: 15px;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
   color: #2c3e50;
+  font-weight: 600;
 }
 
 .popular-post {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
+  // display: flex;
+  // align-items: center;
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 8px;
+  transition: background 0.3s ease;
 }
 
-.popular-post:last-child {
-  margin-bottom: 0;
+.popular-post:hover {
+  background: #f1f1f1;
 }
 
 .popular-post-image {
-  width: 60px;
-  height: 60px;
-  border-radius: 8px;
+  width: 250px;
+  height: 150px;
+  border-radius: 10px;
   object-fit: cover;
-  margin-right: 10px;
+  margin-right: 15px;
 }
 
 .popular-post h4 {
+  font-size: 1.1rem;
+  color: #34495e;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* Author Section */
+.author {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.author:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.author-image {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+.author h3 {
+  font-size: 1.4rem;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.author p {
+  font-size: 0.95rem;
+  color: #7f8c8d;
+  line-height: 1.5;
+}
+
+/* Main Content */
+.blog-main {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* Comments Section */
+.comments-section {
+  margin-top: 20px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.comments-section h3 {
+  font-size: 1.3rem;
+  color: #2c3e50;
+  margin-bottom: 15px;
+}
+
+.comments-section ul {
+  list-style: none;
+  margin-bottom: 15px;
+}
+
+.comments-section ul li {
   font-size: 1rem;
   color: #34495e;
+  margin-bottom: 10px;
+}
+
+textarea {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  resize: vertical;
+  margin-bottom: 10px;
+  transition: border-color 0.3s ease;
+}
+
+textarea:focus {
+  border-color: #3498db;
+}
+
+button {
+  padding: 10px 20px;
+  background: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #2980b9;
 }
 
 /* Responsive Styles */
 @media (max-width: 1200px) {
   .blog-main {
-    flex: 2;
+    gap: 20px;
   }
 
   .featured h1 {
-    font-size: 1.6rem;
+    font-size: 1.7rem;
   }
 
   .comments-section h3 {
-    font-size: 1.2rem;
-  }
-
-  .author h3 {
-    font-size: 1.4rem;
-  }
-
-  .author p {
-    font-size: 0.9rem;
+    font-size: 1.1rem;
   }
 
   .popular-posts h3 {
-    font-size: 1.2rem;
-  }
-
-  .popular-post h4 {
-    font-size: 0.9rem;
+    font-size: 1.3rem;
   }
 }
 
 @media (max-width: 768px) {
-  /* Stack sidebar and main content on smaller screens */
   .container {
     display: block;
   }
 
   .blog-main {
-    flex: none;
-    margin-bottom: 20px; /* Space between main and sidebar */
+    gap: 20px;
   }
 
-  .blog-sidebar {
-    flex: none;
-  }
-
-  /* Adjust images */
   .featured-image {
     max-width: 100%;
   }
 
   .popular-post-image {
-    width: 50px;
-    height: 50px;
+    width: 55px;
+    height: 55px;
   }
 
   .author-image {
-    width: 80px;
-    height: 80px;
+    width: 85px;
+    height: 85px;
   }
 
   .featured h1 {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
   }
 
   .description {
-    font-size: 0.9rem;
-  }
-
-  .comments-section h3 {
-    font-size: 1.2rem;
-  }
-
-  .comment-icon {
-    width: 35px;
-    height: 35px;
     font-size: 1rem;
   }
 
-  .comment-content i {
-    font-size: 0.8rem;
-  }
-
   .comments-section button {
-    font-size: 0.9rem;
+    font-size: 1rem;
     padding: 8px 15px;
   }
 }
@@ -399,32 +472,28 @@ button:hover {
     margin: 5px 0;
   }
 
-  // .logo {
-  //   width: 150px;
-  // }
-
   .popular-posts {
-    padding: 15px;
+    padding: 20px;
   }
 
   .popular-post h4 {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 
   .featured h1 {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
   }
 
   .description {
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
 
   .comments-section textarea {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 
   .comments-section button {
-    font-size: 0.9rem;
+    font-size: 1rem;
     padding: 8px 15px;
   }
 }

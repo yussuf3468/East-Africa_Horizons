@@ -1,0 +1,27 @@
+// Import dependencies
+const jwt = require('jsonwebtoken');
+const User = require('../modules/userModel'); // Mongoose model for users
+
+// Middleware to verify JWT
+async function verifyToken(req, res, next) {
+    const token = req.headers['authorization']?.split(' ')[1]; // Extract token
+
+    console.log('Token from headers:', token); // Log the token received in the request header
+
+    if (!token) {
+        return res.status(401).json({ message: 'Access denied. No token provided.' });
+    }
+
+    try {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET); // Verify token
+        console.log('Decoded JWT:', decoded); // Log the decoded JWT
+
+        req.user = await User.findById(decoded.id).select('-password'); // Fetch user from DB
+        next();
+    } catch (error) {
+        console.error('Error verifying token:', error); // Log any errors with token verification
+        res.status(400).json({ message: 'Invalid token.' });
+    }
+}
+
+module.exports = { verifyToken };

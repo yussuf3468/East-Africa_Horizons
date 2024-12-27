@@ -15,26 +15,26 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
       const response = await fetch("http://localhost:8080/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-
+  
       const data = await response.json();
-
+  
       if (!response.ok) {
         alert(data.message || "An error occurred.");
         return;
       }
-
+  
       // Handle successful login
       if (data.token) {
         alert(`Welcome, ${formData.username}!`);
         localStorage.setItem('authToken', data.token); // Store the token
-        setUser({ username: formData.username }); // Set user in context
+        setUser ({ username: formData.username, token: data.token }); // Set user in context with token
         navigate("/"); // Redirect to the main page
       }
     } catch (error) {
