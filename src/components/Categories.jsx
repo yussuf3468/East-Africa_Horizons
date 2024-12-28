@@ -5,6 +5,7 @@ import culture from '../assets/images/cultural.jpg';
 import luxury from '../assets/images/luxury.jpg';
 import wildlife from '../assets/images/wildlife.jpg';
 import mountains from '../assets/images/mountains.jpg';
+import Navbar1 from './Navbar1';
 
 
 const Categories = () => {
@@ -19,7 +20,7 @@ const Categories = () => {
 
     return (
         <>
-            <nav className="navbar1 modern-navbar">
+            {/* <nav className="navbar1 modern-navbar">
                 <div className="navbar-container">
                     <a href="/" className="navbar-brand">
                         Categories
@@ -31,7 +32,8 @@ const Categories = () => {
                         <li><a href="/contact" className="nav-link nav-cta">Contact</a></li>
                     </ul>
                 </div>
-            </nav>
+            </nav> */}
+            <Navbar1 brand={'Categories'}/>
 
             <div className="categories-container">
                 <h2 className="categories-title">Discover Your Next Journey</h2>

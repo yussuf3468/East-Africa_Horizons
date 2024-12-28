@@ -6,6 +6,7 @@ import logo from "../assets/images/logo2.webp";
 import post1 from "../assets/images/blogpost-2.jpg";
 import post2 from "../assets/images/blogpost-3.jpg";
 import post3 from "../assets/images/blogpost-4.jpg";
+import Navbar1 from "./Navbar1";
 
 const BlogPage = () => {
   const [author, setAuthor] = useState(null);
@@ -129,20 +130,8 @@ const BlogPage = () => {
 
   return (
     <div className="blog-page">
-      <nav className="navbar1 modern-navbar">
-        <div className="navbar-container">
-          <a href="/" className="navbar-brand">
-            <img src={logo} alt="BlogSpace Logo" className="navbar-logo" />
-            Blogspace
-          </a>
-          <ul className="navbar-links">
-            <li><a href="/" className="nav-link1">Home</a></li>
-            <li><Link to="/writeBlog" className="nav-link1">Write a Blog</Link></li>
-            <li><a href="/categories" className="nav-link1">Categories</a></li>
-            <li><a href="/contact" className="nav-link nav-cta">Contact</a></li>
-          </ul>
-        </div>
-      </nav>
+
+      <Navbar1 brand={'Blogspace'}/>
 
       <div className="container">
         <main className="blog-main">

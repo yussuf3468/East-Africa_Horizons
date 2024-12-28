@@ -1,49 +1,49 @@
-/* Navbar Styles */
-.modern-navbar {
-    background-color: #1e88e5;
-    padding: 1rem 2rem;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+// /* Navbar Styles */
+// .modern-navbar {
+//     background-color: #1e88e5;
+//     padding: 1rem 2rem;
+//     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+//     position: sticky;
+//     top: 0;
+//     z-index: 1000;
   
-    .navbar-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+//     .navbar-container {
+//       display: flex;
+//       justify-content: space-between;
+//       align-items: center;
+//     }
   
-    .navbar-links {
-      display: flex;
-      list-style: none;
-      gap: 2rem;
+//     .navbar-links {
+//       display: flex;
+//       list-style: none;
+//       gap: 2rem;
   
-      .nav-link1 {
-        font-size: 1.2rem;
-        font-weight: 500;
-        color: #ffffff;
-        text-decoration: none;
-        transition: color 0.3s ease, transform 0.3s ease;
+//       .nav-link1 {
+//         font-size: 1.2rem;
+//         font-weight: 500;
+//         color: #ffffff;
+//         text-decoration: none;
+//         transition: color 0.3s ease, transform 0.3s ease;
   
-        &:hover {
-          color: #ffab00;
-          transform: translateY(-3px);
-        }
-      }
+//         &:hover {
+//           color: #ffab00;
+//           transform: translateY(-3px);
+//         }
+//       }
   
-      .nav-cta {
-        background-color: #ffab00;
-        color: #fff;
-        padding: 0.8rem 1.5rem;
-        border-radius: 5px;
-        transition: background-color 0.3s ease;
+//       .nav-cta {
+//         background-color: #ffab00;
+//         color: #fff;
+//         padding: 0.8rem 1.5rem;
+//         border-radius: 5px;
+//         transition: background-color 0.3s ease;
   
-        &:hover {
-          background-color: #ff8f00;
-        }
-      }
-    }
-  }
+//         &:hover {
+//           background-color: #ff8f00;
+//         }
+//       }
+//     }
+//   }
   
   /* Categories Page Styles */
   .categories-container {

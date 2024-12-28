@@ -1,6 +1,7 @@
 @use "./base/index" as base; // Use the bundled base styles
 
 @use "./components/_navbar.scss";
+@use "./components/_navbar1.scss";
 @use "./components/_hero.scss";
 @use "./components/_footer.scss";
 @use "./components/_testimonials.scss";
