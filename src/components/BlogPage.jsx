@@ -95,7 +95,7 @@ const BlogPage = () => {
         // Combine posts
         const combinedPosts = [...enrichedServerPosts, ...enrichedInitialPosts];
         setAllPosts(combinedPosts);
-  
+
         if (loggedInUser) {
           const userSpecificPosts = enrichedServerPosts.filter(
             (post) => post.author === loggedInUser.username
@@ -112,7 +112,7 @@ const BlogPage = () => {
         setAllPosts(enrichedInitialPosts);
       }
     };
-  
+
     fetchAllPosts();
   }, [loggedInUser]);
 
@@ -158,11 +158,21 @@ const BlogPage = () => {
       return;
     }
 
+    const commentText = newComments[postId] || "";
+
+    if (!commentText.trim()) {
+      alert("Comment cannot be empty!");
+      return;
+    }
+
     const comment = {
-      postId,
-      username: loggedInUser.username,
+      postId: postId.toString(), // Ensure this matches the backend schema
+      username: loggedInUser.username, // Ensure this is not null
       text: newComments[postId] || "",
     };
+
+
+    console.log("Submitting comment:", comment);
 
     try {
       const response = await fetch("http://localhost:8080/comments", {
@@ -172,20 +182,24 @@ const BlogPage = () => {
       });
 
       const savedComment = await response.json();
+      console.log("Saved comment:", savedComment);
+
       setComments((prev) => ({
         ...prev,
         [postId]: [...(Array.isArray(prev[postId]) ? prev[postId] : []), savedComment],
       }));
-      setNewComments((prev) => ({ ...prev, [postId]: "" }));
+      setNewComments((prev) => ({ ...prev, [postId]: "" })); // Clear the textarea
     } catch (error) {
       console.error("Error adding comment:", error);
     }
   };
 
+
+
   return (
     <div className="blog-page">
 
-      <Navbar1 brand={'Blogspace'}/>
+      <Navbar1 brand={'Blogspace'} />
 
       <div className="container">
         <main className="blog-main">
@@ -198,34 +212,40 @@ const BlogPage = () => {
 
           {/* Display All Posts */}
           {allPosts.map((post) => (
-      <article key={`${post.source}-${post.id || post._id}`} className="featured">
-        <h1>{post.title}</h1>
-        <img
-          src={post.source === "server" ? `http://localhost:8080${post.image}` : post.image}
-          alt={post.title}
-          className="featured-image"
-        />
-        <p className="description">{post.content}</p>
-        <p className="author">By {post.author || "Anonymous"}</p>
-        {/* Comments Section */}
-        <div className="comments-section">
-          <h3>Comments</h3>
-          <ul>
-            {(Array.isArray(comments[post._id]) ? comments[post._id] : []).map((comment, index) => (
-              <li key={`${post._id}-comment-${index}`}>
-                <strong>{comment.username}:</strong> {comment.text}
-              </li>
-            ))}
-          </ul>
-          <textarea
-            value={newComments[post._id] || ""}
-            onChange={(e) => setNewComments({ ...newComments, [post._id]: e.target.value })}
-            placeholder="Add a comment..."
-          />
-          <button onClick={() => handleAddComment(post._id)}>Post Comment</button>
-        </div>
-      </article>
-    ))}
+            <article key={`${post.source}-${post.id || post._id}`} className="featured">
+              <h1>{post.title}</h1>
+              <img
+                src={post.source === "server" ? `http://localhost:8080${post.image}` : post.image}
+                alt={post.title}
+                className="featured-image"
+              />
+              <p className="description">{post.content}</p>
+              <p className="author">By {post.author || "Anonymous"}</p>
+              {/* Comments Section */}
+              <div className="comments-section">
+                <h3>Comments</h3>
+                <ul>
+                  {(Array.isArray(comments[post._id]) ? comments[post._id] : []).map((comment, index) => (
+                    <li key={`${post._id}-comment-${index}`}>
+                      <strong>{comment.username}:</strong> {comment.text}
+                    </li>
+                  ))}
+                </ul>
+                <textarea
+                  value={newComments[post._id] || ""}
+                  onChange={(e) => {
+                    const updatedValue = e.target.value;
+                    console.log(`Updating comment for post ${post._id}:`, updatedValue);
+                    setNewComments({ ...newComments, [post._id]: updatedValue });
+                  }}
+                  placeholder="Add a comment..."
+                />
+
+
+                <button onClick={() => handleAddComment(post._id)}>Post Comment</button>
+              </div>
+            </article>
+          ))}
         </main>
 
         <aside className="blog-sidebar">

@@ -4,19 +4,19 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(() => {
-    const token = localStorage.getItem("authToken");
-    if (token) {
-      return { username: null, token }; // Load token from localStorage
+    const storedUser = localStorage.getItem("userInfo");
+    if (storedUser) {
+      return JSON.parse(storedUser); // Parse the stored user information from localStorage
     }
-    return null; // No user or token by default
+    return null; // No user info by default
   });
 
-  // Sync token with localStorage whenever user changes
+  // Sync user data with localStorage whenever user changes
   useEffect(() => {
-    if (user?.token) {
-      localStorage.setItem("authToken", user.token);
+    if (user) {
+      localStorage.setItem("userInfo", JSON.stringify(user)); // Store user data in localStorage
     } else {
-      localStorage.removeItem("authToken");
+      localStorage.removeItem("userInfo"); // Remove user data when logged out
     }
   }, [user]);
 
