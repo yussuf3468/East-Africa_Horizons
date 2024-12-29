@@ -7,11 +7,12 @@ const path = require('path'); // Import path module
 const app = express();
 
 const corsOptions = {
-  origin: 'https://travelblog9.netlify.app',
+  origin: '*', // Allow all origins for testing
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true, // Include credentials if needed
+  credentials: true,
 };
+
 
 
 app.use(express.json()); // Parse JSON bodies
