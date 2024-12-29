@@ -235,7 +235,6 @@ const BlogPage = () => {
                   value={newComments[post._id] || ""}
                   onChange={(e) => {
                     const updatedValue = e.target.value;
-                    console.log(`Updating comment for post ${post._id}:`, updatedValue);
                     setNewComments({ ...newComments, [post._id]: updatedValue });
                   }}
                   placeholder="Add a comment..."

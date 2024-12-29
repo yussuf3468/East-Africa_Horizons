@@ -983,7 +983,7 @@ button:hover {
 }
 
 .popular-post-image {
-  width: 250px;
+  width: 200px;
   height: 150px;
   border-radius: 10px;
   -o-object-fit: cover;
