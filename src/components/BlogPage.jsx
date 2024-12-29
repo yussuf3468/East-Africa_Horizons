@@ -215,7 +215,7 @@ const BlogPage = () => {
             <article key={`${post.source}-${post.id || post._id}`} className="featured">
               <h1>{post.title}</h1>
               <img
-                src={post.source === "server" ? `${process.env.REACT_APP_API_URL}${post.image}` : post.image}
+                src={post.source === "server" ? `${import.meta.env.VITE_API_URL}${post.image}` : post.image}
                 alt={post.title}
                 className="featured-image"
               />
