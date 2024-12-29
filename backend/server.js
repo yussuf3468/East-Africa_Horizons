@@ -6,9 +6,16 @@ const path = require('path'); // Import path module
 
 const app = express();
 
+const corsOptions = {
+  origin: 'https://travelblog9.netlify.app/', // Replace with your actual Netlify URL
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
+
+
 app.use(express.json()); // Parse JSON bodies
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+app.use(cors(corsOptions));
 
 // Connect to MongoDB
 mongoose

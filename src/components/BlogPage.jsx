@@ -80,7 +80,7 @@ const BlogPage = () => {
   useEffect(() => {
     const fetchAllPosts = async () => {
       try {
-        const response = await fetch("http://localhost:8080/posts");
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/posts`);
         const data = await response.json();
         // Add a source identifier to initialBlogPosts
         const enrichedInitialPosts = initialBlogPosts.map((post) => ({
@@ -137,7 +137,7 @@ const BlogPage = () => {
       try {
         const commentsData = {};
         for (const post of allPosts) {
-          const response = await fetch(`http://localhost:8080/comments/${post._id}`);
+          const response = await fetch(`${process.env.REACT_APP_API_URL}/comments/${post._id}`);
           const data = await response.json();
           commentsData[post._id] = Array.isArray(data) ? data : [];
         }
@@ -175,7 +175,7 @@ const BlogPage = () => {
     console.log("Submitting comment:", comment);
 
     try {
-      const response = await fetch("http://localhost:8080/comments", {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/comments`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(comment),
@@ -215,7 +215,7 @@ const BlogPage = () => {
             <article key={`${post.source}-${post.id || post._id}`} className="featured">
               <h1>{post.title}</h1>
               <img
-                src={post.source === "server" ? `http://localhost:8080${post.image}` : post.image}
+                src={post.source === "server" ? `${process.env.REACT_APP_API_URL}${post.image}` : post.image}
                 alt={post.title}
                 className="featured-image"
               />
