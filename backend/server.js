@@ -32,6 +32,16 @@ app.use('/', userRoutes);
 const postRoutes = require('./routes/postCreator.js');
 app.use('/posts', postRoutes); // Correct path for posts routes
 
+// Serve static files from the 'dist' directory (Vite's build output)
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../dist')));
+
+  // Fallback route to serve the index.html file for React Router
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../dist', 'index.html'));
+  });
+}
+
 // Start Server
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => console.log(`Server running on port http://localhost:${PORT}`));
