@@ -24,7 +24,7 @@ const Register = () => {
     }
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/register`, {
+      const response = await fetch(`https://arcane-gorge-71779-b5e7b09f4808.herokuapp.com/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
