@@ -217,7 +217,7 @@ const BlogPage = () => {
               <img
                 src={`${import.meta.env.VITE_API_URL}/posts/file/${post.image}`}
                 onError={(e) => {
-                  e.target.src = "/path/to/default-image.jpg"; // Path to your fallback image
+                  e.target.src = {post1}; 
                 }}
                 alt={post.title}
                 className="featured-image"
