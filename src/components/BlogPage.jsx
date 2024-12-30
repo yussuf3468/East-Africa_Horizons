@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import "../index.scss";
 import { Link, useNavigate } from "react-router-dom";
-import logo from "../assets/images/logo2.webp";
+// import logo from "../assets/images/logo2.webp";
 import post1 from "../assets/images/blogpost-2.jpg";
 import post2 from "../assets/images/blogpost-3.jpg";
 import post3 from "../assets/images/blogpost-4.jpg";
