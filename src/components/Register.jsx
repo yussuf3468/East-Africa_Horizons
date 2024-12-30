@@ -1,30 +1,24 @@
-import React, { useState } from "react";
-import "../index.scss";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
     password: "",
   });
   const [message, setMessage] = useState("");
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setMessage(""); // Clear previous messages
+    setMessage("");
 
-    // Basic validation (additional checks can be added)
     if (!formData.username || !formData.password) {
       alert("All fields are required.");
       return;
     }
 
     try {
-      console.log(import.meta.env.VITE_API_URL)
       const response = await fetch(`${import.meta.env.VITE_API_URL}/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -32,15 +26,15 @@ const Register = () => {
       });
 
       const data = await response.json();
-      console.log(response)
       if (response.ok) {
-        alert("Registration successful! You can now log in.");
+        alert("Registration successful!");
+        navigate("/login"); // Redirect to login page
       } else {
-        alert(data.message || "Registration failed. Please try again.");
+        setMessage(data.message || "Registration failed. Please try again.");
       }
     } catch (error) {
       console.error("Error during registration:", error);
-      alert("An error occurred. Please try again later.");
+      setMessage("An error occurred. Please try again later.");
     }
   };
 
@@ -56,7 +50,9 @@ const Register = () => {
               id="username"
               name="username"
               value={formData.username}
-              onChange={handleInputChange}
+              onChange={(e) =>
+                setFormData({ ...formData, username: e.target.value })
+              }
               placeholder="Enter your username"
               required
             />
@@ -68,7 +64,9 @@ const Register = () => {
               id="password"
               name="password"
               value={formData.password}
-              onChange={handleInputChange}
+              onChange={(e) =>
+                setFormData({ ...formData, password: e.target.value })
+              }
               placeholder="Enter your password"
               required
             />
@@ -79,7 +77,10 @@ const Register = () => {
         </form>
         {message && <p className="message">{message}</p>}
         <p className="login-link">
-          Already have an account? <a href="/login">Login</a>
+          Already have an account?{" "}
+          <span onClick={() => navigate("/login")} style={{ cursor: "pointer", color: "blue", textDecoration: "underline" }}>
+            Login
+          </span>
         </p>
       </div>
     </div>

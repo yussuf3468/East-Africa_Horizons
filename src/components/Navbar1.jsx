@@ -2,13 +2,13 @@ import React, { useState } from 'react'
 import logo from "../assets/images/logo2.webp";
 import { Link, useNavigate } from "react-router-dom";
 
-const Navbar1 = ({brand}) => {
+const Navbar1 = ({ brand }) => {
 
-     const [menuOpen, setMenuOpen] = useState(false);
-    
-      const toggleMenu = () => {
+    const [menuOpen, setMenuOpen] = useState(false);
+
+    const toggleMenu = () => {
         setMenuOpen(!menuOpen);
-      };
+    };
     return (
         <nav className="navbar1 modern-navbar">
             <div className="navbar-container">
@@ -27,9 +27,9 @@ const Navbar1 = ({brand}) => {
                 </button>
                 <ul className={`navbar-links1 ${menuOpen ? "open" : ""}`}>
                     <li>
-                        <a href="/" className="nav-link1">
+                        <Link to="/" className="nav-link1">
                             Home
-                        </a>
+                        </Link>
                     </li>
                     <li>
                         <Link to="/writeBlog" className="nav-link1">
@@ -37,14 +37,14 @@ const Navbar1 = ({brand}) => {
                         </Link>
                     </li>
                     <li>
-                        <a href="/categories" className="nav-link1">
+                        <Link to="/categories" className="nav-link1">
                             Categories
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="/contact" className="nav-link nav-cta">
+                        <Link to="/contact" className="nav-link nav-cta">
                             Contact
-                        </a>
+                        </Link>
                     </li>
                 </ul>
             </div>

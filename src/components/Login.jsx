@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import '../index.scss';
 
@@ -15,7 +15,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     try {
       console.log(import.meta.env.VITE_API_URL)
       const response = await fetch(`${import.meta.env.VITE_API_URL}/login`, {
@@ -23,19 +23,19 @@ const Login = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-  
+
       const data = await response.json();
-  
+
       if (!response.ok) {
         alert(data.message || "An error occurred.");
         return;
       }
-  
+
       // Handle successful login
       if (data.token) {
         alert(`Welcome, ${formData.username}!`);
         localStorage.setItem('authToken', data.token); // Store the token
-        setUser ({ username: formData.username, token: data.token }); // Set user in context with token
+        setUser({ username: formData.username, token: data.token }); // Set user in context with token
         navigate("/"); // Redirect to the main page
       }
     } catch (error) {
@@ -78,7 +78,7 @@ const Login = () => {
           </button>
         </form>
         <p className="login-link">
-          Don&apos;t Have an account? <a href="/register">Create Account</a>
+          Don&apos;t Have an account? <Link to="/register">Create Account</Link>
         </p>
       </div>
     </div>

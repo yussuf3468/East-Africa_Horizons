@@ -20,19 +20,6 @@ const Categories = () => {
 
     return (
         <>
-            {/* <nav className="navbar1 modern-navbar">
-                <div className="navbar-container">
-                    <a href="/" className="navbar-brand">
-                        Categories
-                    </a>
-                    <ul className="navbar-links">
-                        <li><a href="/" className="nav-link1">Home</a></li>
-                        <li><a href="/blog" className="nav-link1">blog</a></li>
-                        <li><a href="/categories" className="nav-link1">categories</a></li>
-                        <li><a href="/contact" className="nav-link nav-cta">Contact</a></li>
-                    </ul>
-                </div>
-            </nav> */}
             <Navbar1 brand={'Categories'}/>
 
             <div className="categories-container">
