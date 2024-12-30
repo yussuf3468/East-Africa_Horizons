@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const path = require('path'); // Import path module
+const path = require('path');
 
 const app = express();
 
@@ -12,8 +12,6 @@ const corsOptions = {
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
 };
-
-
 
 app.use(express.json()); // Parse JSON bodies
 app.use(express.urlencoded({ extended: true }));
@@ -27,11 +25,6 @@ mongoose
 
 // Serve static files from the 'uploads' directory
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-
-// Default Route
-app.get('/', (req, res) => {
-  res.send('Welcome to Authentication with JWT');
-});
 
 // User Routes
 const userRoutes = require('./routes/userRoutes.js');
@@ -53,6 +46,10 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
+// Default Route
+app.get('/', (req, res) => {
+  res.send('Welcome to Authentication with JWT');
+});
 
 // Start Server
 const PORT = process.env.PORT || 5001;
