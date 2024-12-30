@@ -215,11 +215,10 @@ const BlogPage = () => {
             <article key={`${post.source}-${post.id || post._id}`} className="featured">
               <h1>{post.title}</h1>
               <img
-                src={post.source === "server" ? `https://arcane-gorge-71779-b5e7b09f4808.herokuapp.com${post.image}` : post.image}
+                src={post.source === "server" ? `${import.meta.env.VITE_API_URL}${post.image}` : post.image}
                 alt={post.title}
                 className="featured-image"
               />
-
               <p className="description">{post.content}</p>
               <p className="author">By {post.author || "Anonymous"}</p>
               {/* Comments Section */}

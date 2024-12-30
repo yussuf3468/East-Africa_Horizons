@@ -17,6 +17,7 @@ import Contact from './components/Contact';
 import Categories from './components/Categories';
 import PostCreator from './components/PostCreator';
 import { AuthContext } from './context/AuthContext';
+import NotFound from './components/NotFound'; // Import your NotFound component
 
 function App() {
   const navigate = useNavigate();
@@ -76,6 +77,7 @@ function App() {
       <Route path="/categories" element={<Categories />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      <Route path="*" element={<NotFound />} /> {/* Catch-all route */}
     </Routes>
   );
 }
