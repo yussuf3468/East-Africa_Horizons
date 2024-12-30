@@ -35,6 +35,7 @@ const postRoutes = require('./routes/postCreator.js');
 app.use('/posts', postRoutes); // Correct path for posts routes
 
 // Serve static files from the 'dist' directory (Vite's build output)
+if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../dist')));
 
   // Fallback route for React Router
@@ -43,6 +44,7 @@ app.use('/posts', postRoutes); // Correct path for posts routes
       res.sendFile(path.join(__dirname, '../dist', 'index.html'));
     }
   });
+}
 
 // Default Route
 app.get('/', (req, res) => {
