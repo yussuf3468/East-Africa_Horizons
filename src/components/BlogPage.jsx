@@ -212,24 +212,13 @@ const BlogPage = () => {
 
           {/* Display All Posts */}
           {allPosts.map((post) => (
-            <article key={post.id || post._id} className="featured">
+            <article key={`${post.id || post._id}`} className="featured">
               <h1>{post.title}</h1>
-
-              {/* Image with Fallback */}
               <img
-                src={
-                  post.image
-                    ? `${import.meta.env.VITE_API_URL}/posts/file/${post.image}`
-                    : post4 // Fallback image if post.image is not available
-                }
-                onError={(e) => {
-                  // Show fallback image if the image fails to load
-                  e.target.src = post4;
-                }}
+                src={`${import.meta.env.VITE_API_URL}/posts/file/${post.image}`}
                 alt={post.title}
                 className="featured-image"
               />
-
               <p className="description">{post.content}</p>
               <p className="author">By {post.author || "Anonymous"}</p>
 
