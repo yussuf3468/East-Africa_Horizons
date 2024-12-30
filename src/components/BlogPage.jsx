@@ -215,10 +215,14 @@ const BlogPage = () => {
             <article key={`${post.id || post._id}`} className="featured">
               <h1>{post.title}</h1>
               <img
-                src={`${import.meta.env.VITE_API_URL}/posts/file/${post.image}`}
-                alt={post.title}
-                className="featured-image"
-              />
+  src={`${import.meta.env.VITE_API_URL}/posts/file/${post.image}`}
+  onError={(e) => {
+    e.target.src = "/path/to/default-image.jpg"; // Path to your fallback image
+  }}
+  alt={post.title}
+  className="featured-image"
+/>
+
               <p className="description">{post.content}</p>
               <p className="author">By {post.author || "Anonymous"}</p>
 

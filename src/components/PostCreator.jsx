@@ -22,43 +22,33 @@ const PostCreator = ({ onAddPost }) => {
   };
 
   // PostCreator.jsx
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  setError(null);
-
-  if (!loggedInUser) {
-    alert("You need to be logged in to create a post!");
-    return;
-  }
-
-  if (!title || !content || !(image instanceof File)) {
-    setError("Please fill in all fields and upload a valid image.");
-    return;
-  }
-
-  const formData = new FormData();
-  formData.append("title", title);
-  formData.append("content", content);
-  formData.append("image", image);
-
-  console.log("FormData entries in PostCreator:");
-  formData.forEach((value, key) => {
-    console.log(`${key}:`, value);
-  });
-
-  setLoading(true);
-
-  try {
-    await onAddPost(formData); // Pass FormData to parent component
-    setLoading(false);
-    setTitle("");
-    setContent("");
-    setImage(null);
-  } catch (err) {
-    setLoading(false);
-    setError(err.message);
-  }
-};
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('content', content);
+    formData.append('image', image);
+  
+    try {
+      const response = await fetch('http://localhost:8080/posts', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: formData,
+      });
+  
+      if (response.ok) {
+        const result = await response.json();
+        console.log('Post created:', result);
+      } else {
+        const error = await response.json();
+        console.error('Error creating post:', error);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
 
   return (
     <div className="post-creator">
