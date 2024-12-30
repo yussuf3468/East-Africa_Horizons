@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const path = require('path');
+const path = require('path'); // Import path module
 
 const app = express();
 
@@ -12,6 +12,8 @@ const corsOptions = {
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
 };
+
+
 
 app.use(express.json()); // Parse JSON bodies
 app.use(express.urlencoded({ extended: true }));
@@ -26,6 +28,11 @@ mongoose
 // Serve static files from the 'uploads' directory
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
+// Default Route
+app.get('/', (req, res) => {
+  res.send('Welcome to Authentication with JWT');
+});
+
 // User Routes
 const userRoutes = require('./routes/userRoutes.js');
 app.use('/', userRoutes);
@@ -38,18 +45,11 @@ app.use('/posts', postRoutes); // Correct path for posts routes
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../dist')));
 
-  // Fallback route for React Router
+  // Fallback route to serve the index.html file for React Router
   app.get('*', (req, res) => {
-    if (!req.path.startsWith('/uploads')) {
-      res.sendFile(path.join(__dirname, '../dist', 'index.html'));
-    }
+    res.sendFile(path.join(__dirname, '../dist', 'index.html'));
   });
 }
-
-// Default Route
-app.get('/', (req, res) => {
-  res.send('Welcome to Authentication with JWT');
-});
 
 // Start Server
 const PORT = process.env.PORT || 5001;
