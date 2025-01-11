@@ -2,67 +2,56 @@ import React, { useState, useContext } from "react";
 import PropTypes from "prop-types";
 import { AuthContext } from "../context/AuthContext";
 
-const PostCreator = ({ onAddPost }) => {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+const PostCreator = ({ onSubmit, post = {} }) => {
+  const [title, setTitle] = useState(post.title || "");
+  const [content, setContent] = useState(post.content || "");
   const [image, setImage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const { user: loggedInUser } = useContext(AuthContext);
-  const token = loggedInUser?.token || localStorage.getItem("authToken");
 
-  // Handle file input change
   const handleFileChange = (event) => {
     const file = event.target.files[0];
-    if (file) {
-      setImage(file);
-    } else {
+    setImage(file || null);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError(null);
+
+    if (!loggedInUser) {
+      alert("You need to be logged in to proceed!");
+      return;
+    }
+
+    if (!title || !content) {
+      setError("Please fill in all required fields.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("content", content);
+    if (image) {
+      formData.append("image", image);
+    }
+
+    setLoading(true);
+    try {
+      await onSubmit(formData, post._id); // Pass FormData and post ID to parent
+      setLoading(false);
+      setTitle("");
+      setContent("");
       setImage(null);
+    } catch (err) {
+      setLoading(false);
+      setError(err.message);
     }
   };
 
-  // PostCreator.jsx
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  setError(null);
-
-  if (!loggedInUser) {
-    alert("You need to be logged in to create a post!");
-    return;
-  }
-
-  if (!title || !content || !(image instanceof File)) {
-    setError("Please fill in all fields and upload a valid image.");
-    return;
-  }
-
-  const formData = new FormData();
-  formData.append("title", title);
-  formData.append("content", content);
-  formData.append("image", image);
-
-  console.log("FormData entries in PostCreator:");
-  formData.forEach((value, key) => {
-    console.log(`${key}:`, value);
-  });
-
-  setLoading(true);
-
-  try {
-    await onAddPost(formData); // Pass FormData to parent component
-    setLoading(false);
-    setTitle("");
-    setContent("");
-    setImage(null);
-  } catch (err) {
-    setLoading(false);
-    setError(err.message);
-  }
-};
-
   return (
     <div className="post-creator">
-      <h2>Create a New Post</h2>
+      <h2>{post._id ? "Edit Post" : "Create a New Post"}</h2>
       {error && <p className="error-message">{error}</p>}
       <form onSubmit={handleSubmit}>
         <label htmlFor="title">Post Title</label>
@@ -89,11 +78,10 @@ const handleSubmit = async (e) => {
           name="image"
           accept="image/*"
           onChange={handleFileChange}
-          required
         />
         {image && <p>Selected File: {image.name}</p>}
         <button type="submit" disabled={loading}>
-          {loading ? "Creating Post..." : "Add Post"}
+          {loading ? "Submitting..." : post._id ? "Update Post" : "Add Post"}
         </button>
       </form>
     </div>
@@ -101,7 +89,8 @@ const handleSubmit = async (e) => {
 };
 
 PostCreator.propTypes = {
-  onAddPost: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  post: PropTypes.object,
 };
 
 export default PostCreator;

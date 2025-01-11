@@ -73,6 +73,8 @@ const BlogPage = () => {
   const [userPosts, setUserPosts] = useState([]);
   const [allPosts, setAllPosts] = useState([]);
   const [showWriteBlog, setShowWriteBlog] = useState(false);
+  const [editingPost, setEditingPost] = useState(null);
+
 
   const navigate = useNavigate();
 
@@ -151,6 +153,10 @@ const BlogPage = () => {
     if (allPosts.length) fetchComments();
   }, [allPosts]);
 
+  const handleEditPost = (post) => {
+    setEditingPost({ ...post });
+  };
+
   // Handle adding a new comment
   const handleAddComment = async (postId) => {
     if (!loggedInUser) {
@@ -195,7 +201,64 @@ const BlogPage = () => {
   };
 
 
+  const handleDeletePost = async (postId) => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this post?");
+    if (!confirmDelete) return;
 
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/posts/${postId}`, {
+        method: "DELETE",
+        headers: { Authorization: `Bearer ${loggedInUser.token}` },
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Failed to delete the post");
+      }
+
+      // Remove the deleted post from the state
+      setAllPosts((prev) => prev.filter((post) => post._id !== postId));
+      alert("Post successfully deleted!");
+    } catch (error) {
+      console.error("Error deleting post:", error);
+      alert("Failed to delete the post. Please try again later.");
+    }
+  };
+
+  const handleSaveEditedPost = async () => {
+    if (!editingPost) return;
+
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/posts/${editingPost._id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${loggedInUser.token}`,
+        },
+        body: JSON.stringify(editingPost),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Failed to update the post");
+      }
+
+      const updatedPost = await response.json();
+
+      // Update the post in the state
+      setAllPosts((prev) =>
+        prev.map((post) => (post._id === updatedPost._id ? updatedPost : post))
+      );
+
+      setEditingPost(null); // Exit editing mode
+      alert("Post successfully updated!");
+    } catch (error) {
+      console.error("Error updating post:", error);
+      alert("Failed to update the post. Please try again later.");
+    }
+  };
+
+  
   return (
     <div className="blog-page">
 
@@ -221,6 +284,15 @@ const BlogPage = () => {
               />
               <p className="description">{post.content}</p>
               <p className="author">By {post.author || "Anonymous"}</p>
+
+              {/* Edit and Delete Buttons */}
+              {loggedInUser?.username === post.author && (
+                <div className="post-actions">
+                  <button onClick={() => handleEditPost(post)}>Edit</button>
+                  <button onClick={() => handleDeletePost(post._id)}>Delete</button>
+                </div>
+              )}
+
               {/* Comments Section */}
               <div className="comments-section">
                 <h3>Comments</h3>
@@ -239,12 +311,34 @@ const BlogPage = () => {
                   }}
                   placeholder="Add a comment..."
                 />
-
-
                 <button onClick={() => handleAddComment(post._id)}>Post Comment</button>
               </div>
+
+              {editingPost && editingPost._id === post._id ? (
+            <div className="edit-post-form">
+              <input
+                type="text"
+                value={editingPost.title}
+                onChange={(e) => setEditingPost({ ...editingPost, title: e.target.value })}
+                placeholder="Post Title"
+              />
+              <textarea
+                value={editingPost.content}
+                onChange={(e) => setEditingPost({ ...editingPost, content: e.target.value })}
+                placeholder="Post Content"
+              />
+              <button onClick={handleSaveEditedPost}>Save</button>
+              <button onClick={() => setEditingPost(null)}>Cancel</button>
+            </div>
+          ) : (
+            <>
+              <p className="description">{post.content}</p>
+              <p className="author">By {post.author || "Anonymous"}</p>
+            </>
+          )}
             </article>
           ))}
+
         </main>
 
         <aside className="blog-sidebar">

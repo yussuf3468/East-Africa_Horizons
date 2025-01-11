@@ -86,4 +86,49 @@ router.get('/', async (req, res) => {
   }
 });
 
+// Route to edit a post
+router.put('/:id', verifyToken, upload.single('image'), async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { title, content } = req.body;
+
+    const updateData = { title, content };
+    if (req.file) {
+      updateData.image = `/uploads/${req.file.filename}`;
+    }
+
+    const updatedPost = await Post.findByIdAndUpdate(id, updateData, {
+      new: true, // Return the updated document
+    });
+
+    if (!updatedPost) {
+      return res.status(404).json({ message: 'Post not found' });
+    }
+
+    res.status(200).json({ message: 'Post updated successfully', post: updatedPost });
+  } catch (error) {
+    console.error("Error updating post:", error);
+    res.status(500).json({ message: 'Error updating post', error });
+  }
+});
+
+// Route to delete a post
+router.delete('/:id', verifyToken, async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const deletedPost = await Post.findByIdAndDelete(id);
+
+    if (!deletedPost) {
+      return res.status(404).json({ message: 'Post not found' });
+    }
+
+    res.status(200).json({ message: 'Post deleted successfully', post: deletedPost });
+  } catch (error) {
+    console.error("Error deleting post:", error);
+    res.status(500).json({ message: 'Error deleting post', error });
+  }
+});
+
+
 module.exports = router;

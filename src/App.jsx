@@ -1,83 +1,91 @@
-import React, { useContext } from 'react';
-import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
-import '../src/index.scss';
-import Navbar from './components/Navbar';
-import Destinations from './components/Destinations';
-import BlogPosts from './components/BlogCarousel';
-import Frames from './components/Frames';
-import Testimonials from './components/Testimonials';
-import Newsletter from './components/Newsletter';
-import Footer from './components/Footer';
-import Login from './components/Login';
-import Register from './components/Register';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import BlogPage from './components/BlogPage';
-import Contact from './components/Contact';
-import Categories from './components/Categories';
-import PostCreator from './components/PostCreator';
-import { AuthContext } from './context/AuthContext';
-import NotFound from './components/NotFound'; // Import your NotFound component
+import React, { useContext, useState, useEffect } from "react";
+import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
+import "../src/index.scss";
+import Navbar from "./components/Navbar";
+import BlogPage from "./components/BlogPage";
+import PostCreator from "./components/PostCreator";
+import { AuthContext } from "./context/AuthContext";
+import NotFound from "./components/NotFound";
 
 function App() {
   const navigate = useNavigate();
   const { user: loggedInUser } = useContext(AuthContext);
-  const token = loggedInUser?.token || localStorage.getItem('authToken');
+  const token = loggedInUser?.token || localStorage.getItem("authToken");
+  const [editingPost, setEditingPost] = useState(null);
 
-  const handleAddPost = async (formData) => {
-    console.log('FormData entries in App:');
-    for (let pair of formData.entries()) {
-      console.log(`${pair[0]}:`, pair[1]);
-    }
+  const handleAddOrUpdatePost = async (formData, postId) => {
+    const url = postId
+      ? `${import.meta.env.VITE_API_URL}/posts/${postId}`
+      : `${import.meta.env.VITE_API_URL}/posts`;
+    const method = postId ? "PUT" : "POST";
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/posts`, {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${token}`, // Only include Authorization header
-        },
+      const response = await fetch(url, {
+        method,
+        headers: { Authorization: `Bearer ${token}` },
         body: formData,
       });
 
       const responseBody = await response.json();
-      console.log('Response Status:', response.status);
-      console.log('Response Body:', responseBody);
 
       if (!response.ok) {
-        throw new Error(responseBody?.message || 'Failed to create post');
+        throw new Error(responseBody?.message || "Failed to submit post");
       }
 
-      alert('Post successfully created!');
-      navigate('/blog'); // Navigate to the blog page after success
+      alert(`Post successfully ${postId ? "updated" : "created"}!`);
+      setEditingPost(null); // Reset editingPost after success
+      navigate("/blog"); // Navigate to the blog page
     } catch (error) {
-      console.error('Error adding post:', error.message);
+      console.error("Error submitting post:", error.message);
+      alert(`An error occurred: ${error.message}`);
+    }
+  };
+
+  const handleDeletePost = async (postId) => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this post?");
+    if (!confirmDelete) return;
+
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/posts/${postId}`, {
+        method: "DELETE",
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      if (!response.ok) {
+        const errorBody = await response.json();
+        throw new Error(errorBody?.message || "Failed to delete post");
+      }
+
+      alert("Post successfully deleted!");
+      navigate("/blog"); // Refresh the blog page after deletion
+    } catch (error) {
+      console.error("Error deleting post:", error.message);
       alert(`An error occurred: ${error.message}`);
     }
   };
 
   return (
     <Routes>
+      <Route path="/" element={<Navbar />} />
       <Route
-        path="/"
+        path="/writeBlog"
         element={
-          <>
-            <Navbar />
-            <Destinations />
-            <BlogPosts />
-            <Frames />
-            <Testimonials />
-            <Newsletter />
-            <Footer />
-          </>
+          <PostCreator
+            onSubmit={handleAddOrUpdatePost}
+            post={editingPost} // Pass the editing post if available
+          />
         }
       />
-      <Route path="/contact" element={<Contact />} />
-      <Route path="/writeBlog" element={<PostCreator onAddPost={handleAddPost} />} />
-      <Route path="/blog" element={<BlogPage />} />
-      <Route path="/categories" element={<Categories />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="*" element={<NotFound />} /> {/* Catch-all route */}
+      <Route
+        path="/blog"
+        element={
+          <BlogPage
+            onEdit={(post) => setEditingPost(post)} // Set the post to be edited
+            onDelete={handleDeletePost} // Handle deletion
+          />
+        }
+      />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }
