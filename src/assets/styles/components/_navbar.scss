@@ -189,67 +189,48 @@ img {
 @media (max-width: 1024px) {
   .navbar {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap; // Allow items to wrap if needed
+    justify-content: space-between; // Space out items evenly
     align-items: center;
-    justify-content: space-between;
-    padding: 1rem;
+    padding: 1rem; // Adjust padding for smaller screens
 
-    // Adjust heading alignment
     h1 {
-      margin-right: auto; // Push other elements to the right
+      flex: 1 1 100%; // Ensure the heading spans the full width
       text-align: center;
+      margin-bottom: 1rem;
+      font-size: base.$font-size-md;
     }
 
-    // Navbar collapse section
     .navbar-collapse {
       display: flex;
       flex-direction: column; // Stack items vertically
       align-items: center;
-      background-color: rgba(0, 0, 0, 0.9);
-      border-radius: 8px;
-      padding: 1rem;
-      width: 100%;
+      background-color: transparent; // Match larger screens
+      padding: 0;
     }
 
-    // Navbar links
     .navbar-nav {
-      flex-direction: column; // Stack links vertically
-      width: 100%;
-
-      .nav-item {
-        text-align: center;
-        margin: 0.5rem 0;
-
-        a {
-          color: white !important;
-          padding: 0.5rem;
-          background-color: rgba(255, 255, 255, 0.1);
-          border-radius: 5px;
-
-          &:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-          }
-        }
-      }
-    }
-
-    // Adjust button alignment
-    .d-flex.align-items-center {
-      flex-direction: column;
+      flex-direction: row; // Keep links in a single row
+      justify-content: center; // Center links
       align-items: center;
-
-      .btn {
-        margin-bottom: 1rem;
-        width: 100%; // Full width for buttons
-        text-align: center;
-      }
+      gap: 15px; // Add spacing between links
     }
 
-    // Navbar toggler
+    .nav-item a {
+      font-size: base.$font-size-sm; // Adjust text size
+      padding: 0.5rem 0.8rem; // Add space around links
+      color: base.$light-color !important;
+    }
+
     .navbar-toggler {
-      margin-top: 1rem;
+      margin-left: auto; // Push toggler to the right
       margin-bottom: 1rem;
-      align-self: center;
+    }
+
+    .d-flex.align-items-center {
+      flex-direction: row; // Align elements horizontally
+      align-items: center;
+      gap: 10px; // Add space between buttons and inputs
     }
   }
 }
