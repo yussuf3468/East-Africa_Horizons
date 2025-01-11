@@ -347,8 +347,8 @@ button:hover {
     justify-content: flex-end;
     align-items: center;
   }
-}
 
+  
 /* Delete and Edit Buttons */
 .edit-button, .delete-button {
   background-color: #f39c12;
@@ -432,6 +432,8 @@ button:hover {
     padding: 10px 15px;
   }
 }
+}
+
 
 // Mobile responsive design
 @media screen and (max-width: 768px) {

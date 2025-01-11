@@ -1,11 +1,23 @@
-import React, { useContext, useState, useEffect } from "react";
-import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
-import "../src/index.scss";
-import Navbar from "./components/Navbar";
-import BlogPage from "./components/BlogPage";
-import PostCreator from "./components/PostCreator";
-import { AuthContext } from "./context/AuthContext";
-import NotFound from "./components/NotFound";
+import React, { useContext, useState } from 'react';
+import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
+import '../src/index.scss';
+import Navbar from './components/Navbar';
+import Destinations from './components/Destinations';
+import BlogPosts from './components/BlogCarousel';
+import Frames from './components/Frames';
+import Testimonials from './components/Testimonials';
+import Newsletter from './components/Newsletter';
+import Footer from './components/Footer';
+import Login from './components/Login';
+import Register from './components/Register';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import BlogPage from './components/BlogPage';
+import Contact from './components/Contact';
+import Categories from './components/Categories';
+import PostCreator from './components/PostCreator';
+import { AuthContext } from './context/AuthContext';
+import NotFound from './components/NotFound'; // Import your NotFound component
 
 function App() {
   const navigate = useNavigate();
@@ -66,7 +78,25 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<Navbar />} />
+      <Route
+        path="/"
+        element={
+          <>
+            <Navbar />
+            <Destinations />
+            <BlogPosts />
+            <Frames />
+            <Testimonials />
+            <Newsletter />
+            <Footer />
+          </>
+        }
+      />
+      <Route path="/contact" element={<Contact />} />
+      <Route path="/categories" element={<Categories />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="*" element={<NotFound />} /> {/* Catch-all route */}
       <Route
         path="/writeBlog"
         element={
@@ -85,7 +115,6 @@ function App() {
           />
         }
       />
-      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }
