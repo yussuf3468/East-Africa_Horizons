@@ -186,3 +186,70 @@ img {
     min-height: 60vh;
   }
 }
+@media (max-width: 1024px) {
+  .navbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+
+    // Adjust heading alignment
+    h1 {
+      margin-right: auto; // Push other elements to the right
+      text-align: center;
+    }
+
+    // Navbar collapse section
+    .navbar-collapse {
+      display: flex;
+      flex-direction: column; // Stack items vertically
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.9);
+      border-radius: 8px;
+      padding: 1rem;
+      width: 100%;
+    }
+
+    // Navbar links
+    .navbar-nav {
+      flex-direction: column; // Stack links vertically
+      width: 100%;
+
+      .nav-item {
+        text-align: center;
+        margin: 0.5rem 0;
+
+        a {
+          color: white !important;
+          padding: 0.5rem;
+          background-color: rgba(255, 255, 255, 0.1);
+          border-radius: 5px;
+
+          &:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+          }
+        }
+      }
+    }
+
+    // Adjust button alignment
+    .d-flex.align-items-center {
+      flex-direction: column;
+      align-items: center;
+
+      .btn {
+        margin-bottom: 1rem;
+        width: 100%; // Full width for buttons
+        text-align: center;
+      }
+    }
+
+    // Navbar toggler
+    .navbar-toggler {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      align-self: center;
+    }
+  }
+}
