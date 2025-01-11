@@ -350,68 +350,82 @@ button:hover {
 }
 
  
+/* Scoped Button Styles for Posts */
+.post-actions .edit-button,
+.post-actions .delete-button,
+.edit-post-form .save-button,
+.edit-post-form .cancel-button {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
 /* Edit Button */
-.edit-button {
+.post-actions .edit-button {
   background: linear-gradient(45deg, #4CAF50, #1abc9c);
   color: #fff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.edit-button:hover {
+.post-actions .edit-button:hover {
   background: linear-gradient(45deg, #1abc9c, #16a085);
   transform: translateY(-2px);
 }
 
 /* Delete Button */
-.delete-button {
+.post-actions .delete-button {
   background: linear-gradient(45deg, #e74c3c, #c0392b);
   color: #fff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.delete-button:hover {
+.post-actions .delete-button:hover {
   background: linear-gradient(45deg, #c0392b, #8e291d);
   transform: translateY(-2px);
 }
 
 /* Save Button */
-.save-button {
+.edit-post-form .save-button {
   background: linear-gradient(45deg, #3498db, #2980b9);
   color: #fff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.save-button:hover {
+.edit-post-form .save-button:hover {
   background: linear-gradient(45deg, #2980b9, #2471a3);
   transform: scale(1.03);
 }
 
 /* Cancel Button */
-.cancel-button {
+.edit-post-form .cancel-button {
   background: linear-gradient(45deg, #95a5a6, #7f8c8d);
   color: #fff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.cancel-button:hover {
+.edit-post-form .cancel-button:hover {
   background: linear-gradient(45deg, #7f8c8d, #626e73);
   transform: scale(1.03);
 }
 
 /* Focused Button Effect */
-button:focus {
+.post-actions .edit-button:focus,
+.post-actions .delete-button:focus,
+.edit-post-form .save-button:focus,
+.edit-post-form .cancel-button:focus {
   outline: none;
   box-shadow: 0 0 8px rgba(52, 152, 219, 0.7);
 }
 
-/* Mobile Responsive Buttons */
-@media screen and (max-width: 768px) {
-  button {
-    font-size: 0.9rem;
-    padding: 10px 15px;
-    border-radius: 6px;
-  }
-}
 
 // Mobile responsive design
 @media screen and (max-width: 768px) {

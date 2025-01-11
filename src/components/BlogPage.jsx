@@ -278,66 +278,76 @@ const BlogPage = () => {
           )}
 
           {/* Display All Posts */}
-{allPosts.map((post) => (
-  <article key={`${post.source}-${post.id || post._id}`} className="featured">
-    <h1>{post.title}</h1>
-    <img
-      src={post.source === "server" ? `${import.meta.env.VITE_API_URL}${post.image}` : post.image}
-      alt={post.title}
-      className="featured-image"
-    />
-    <p className="description">{post.content}</p>
-    <p className="author">By {post.author || "Anonymous"}</p>
+          {allPosts.map((post) => (
+            <article key={`${post.source}-${post.id || post._id}`} className="featured">
+              <h1>{post.title}</h1>
+              <img
+                src={post.source === "server" ? `${import.meta.env.VITE_API_URL}${post.image}` : post.image}
+                alt={post.title}
+                className="featured-image"
+              />
+              <p className="description">{post.content}</p>
+              <p className="author">By {post.author || "Anonymous"}</p>
 
-    {/* Edit and Delete Buttons */}
-    {loggedInUser?.username === post.author && (
-      <div className="post-actions">
-        <button onClick={() => handleEditPost(post)} className="edit-button">Edit</button>
-        <button onClick={() => handleDeletePost(post._id)} className="delete-button">Delete</button>
-      </div>
-    )}
+              {/* Edit and Delete Buttons */}
+              {loggedInUser?.username === post.author && (
+                <div className="post-actions">
+                  <button
+                    onClick={() => handleEditPost(post)}
+                    className="edit-button"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => handleDeletePost(post._id)}
+                    className="delete-button"
+                  >
+                    Delete
+                  </button>
+                </div>
+              )}
 
-    {/* Comments Section */}
-    <div className="comments-section">
-      <h3>Comments</h3>
-      <ul>
-        {(Array.isArray(comments[post._id]) ? comments[post._id] : []).map((comment, index) => (
-          <li key={`${post._id}-comment-${index}`}>
-            <strong>{comment.username}:</strong> {comment.text}
-          </li>
-        ))}
-      </ul>
-      <textarea
-        value={newComments[post._id] || ""}
-        onChange={(e) => {
-          const updatedValue = e.target.value;
-          setNewComments({ ...newComments, [post._id]: updatedValue });
-        }}
-        placeholder="Add a comment..."
-      />
-      <button onClick={() => handleAddComment(post._id)}>Post Comment</button>
-    </div>
+              {/* Comments Section */}
+              <div className="comments-section">
+                <h3>Comments</h3>
+                <ul>
+                  {(Array.isArray(comments[post._id]) ? comments[post._id] : []).map((comment, index) => (
+                    <li key={`${post._id}-comment-${index}`}>
+                      <strong>{comment.username}:</strong> {comment.text}
+                    </li>
+                  ))}
+                </ul>
+                <textarea
+                  value={newComments[post._id] || ""}
+                  onChange={(e) => {
+                    const updatedValue = e.target.value;
+                    setNewComments({ ...newComments, [post._id]: updatedValue });
+                  }}
+                  placeholder="Add a comment..."
+                />
+                <button onClick={() => handleAddComment(post._id)}>Post Comment</button>
+              </div>
 
-    {/* Edit Post Form */}
-    {editingPost && editingPost._id === post._id && (
-      <div className="edit-post-form">
-        <input
-          type="text"
-          value={editingPost.title}
-          onChange={(e) => setEditingPost({ ...editingPost, title: e.target.value })}
-          placeholder="Post Title"
-        />
-        <textarea
-          value={editingPost.content}
-          onChange={(e) => setEditingPost({ ...editingPost, content: e.target.value })}
-          placeholder="Post Content"
-        />
-        <button onClick={handleSaveEditedPost}>Save</button>
-        <button onClick={() => setEditingPost(null)}>Cancel</button>
-      </div>
-    )}
-  </article>
-))}
+              {/* Edit Post Form */}
+              {editingPost && editingPost._id === post._id && (
+                <div className="edit-post-form">
+                  <input
+                    type="text"
+                    value={editingPost.title}
+                    onChange={(e) => setEditingPost({ ...editingPost, title: e.target.value })}
+                    placeholder="Post Title"
+                  />
+                  <textarea
+                    value={editingPost.content}
+                    onChange={(e) => setEditingPost({ ...editingPost, content: e.target.value })}
+                    placeholder="Post Content"
+                  />
+                  <button className="save-button" onClick={handleSaveEditedPost}>Save</button>
+                  <button className="cancel-button" onClick={() => setEditingPost(null)}>Cancel</button>
+                </div>
+              )}
+            </article>
+          ))}
 
 
 
