@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import { AuthContext } from "../context/AuthContext";
 
 const PostCreator = ({ onSubmit, post = {} }) => {
-  const [title, setTitle] = useState(post.title || "");
-  const [content, setContent] = useState(post.content || "");
+  const [title, setTitle] = useState(post?.title || ""); // Use optional chaining
+  const [content, setContent] = useState(post?.content || ""); // Use optional chaining
   const [image, setImage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -38,7 +38,7 @@ const PostCreator = ({ onSubmit, post = {} }) => {
 
     setLoading(true);
     try {
-      await onSubmit(formData, post._id); // Pass FormData and post ID to parent
+      await onSubmit(formData, post?._id); // Use optional chaining
       setLoading(false);
       setTitle("");
       setContent("");
@@ -51,7 +51,7 @@ const PostCreator = ({ onSubmit, post = {} }) => {
 
   return (
     <div className="post-creator">
-      <h2>{post._id ? "Edit Post" : "Create a New Post"}</h2>
+      <h2>{post?._id ? "Edit Post" : "Create a New Post"}</h2> {/* Use optional chaining */}
       {error && <p className="error-message">{error}</p>}
       <form onSubmit={handleSubmit}>
         <label htmlFor="title">Post Title</label>
@@ -81,7 +81,7 @@ const PostCreator = ({ onSubmit, post = {} }) => {
         />
         {image && <p>Selected File: {image.name}</p>}
         <button type="submit" disabled={loading}>
-          {loading ? "Submitting..." : post._id ? "Update Post" : "Add Post"}
+          {loading ? "Submitting..." : post?._id ? "Update Post" : "Add Post"}
         </button>
       </form>
     </div>
