@@ -204,19 +204,22 @@ const BlogPage = () => {
   const handleDeletePost = async (postId) => {
     const confirmDelete = window.confirm("Are you sure you want to delete this post?");
     if (!confirmDelete) return;
-
+  
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/posts/${postId}`, {
         method: "DELETE",
-        headers: { Authorization: `Bearer ${loggedInUser.token}` },
+        headers: {
+          Authorization: `Bearer ${loggedInUser.token}`,
+        },
       });
-
+  
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "Failed to delete the post");
+        // Check if the response is not ok, and handle accordingly
+        const errorText = await response.text(); // Read as text to inspect the response
+        throw new Error(errorText || "Failed to delete the post.");
       }
-
-      // Remove the deleted post from the state
+  
+      // If successful, remove the deleted post from the state
       setAllPosts((prev) => prev.filter((post) => post._id !== postId));
       alert("Post successfully deleted!");
     } catch (error) {
@@ -224,6 +227,7 @@ const BlogPage = () => {
       alert("Failed to delete the post. Please try again later.");
     }
   };
+  
 
   const handleSaveEditedPost = async () => {
     if (!editingPost) return;
