@@ -204,7 +204,7 @@ const BlogPage = () => {
   const handleDeletePost = async (postId) => {
     const confirmDelete = window.confirm("Are you sure you want to delete this post?");
     if (!confirmDelete) return;
-  
+
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/posts/${postId}`, {
         method: "DELETE",
@@ -212,13 +212,13 @@ const BlogPage = () => {
           Authorization: `Bearer ${loggedInUser.token}`,
         },
       });
-  
+
       if (!response.ok) {
         // Check if the response is not ok, and handle accordingly
         const errorText = await response.text(); // Read as text to inspect the response
         throw new Error(errorText || "Failed to delete the post.");
       }
-  
+
       // If successful, remove the deleted post from the state
       setAllPosts((prev) => prev.filter((post) => post._id !== postId));
       alert("Post successfully deleted!");
@@ -227,7 +227,7 @@ const BlogPage = () => {
       alert("Failed to delete the post. Please try again later.");
     }
   };
-  
+
 
   const handleSaveEditedPost = async () => {
     if (!editingPost) return;
@@ -262,7 +262,7 @@ const BlogPage = () => {
     }
   };
 
-  
+
   return (
     <div className="blog-page">
 
@@ -278,7 +278,7 @@ const BlogPage = () => {
           )}
 
           {/* Display All Posts */}
-          {allPosts.map((post) => (
+{allPosts.map((post) => (
   <article key={`${post.source}-${post.id || post._id}`} className="featured">
     <h1>{post.title}</h1>
     <img
@@ -292,18 +292,8 @@ const BlogPage = () => {
     {/* Edit and Delete Buttons */}
     {loggedInUser?.username === post.author && (
       <div className="post-actions">
-        <button
-          onClick={() => handleEditPost(post)}
-          className="edit-button"
-        >
-          Edit
-        </button>
-        <button
-          onClick={() => handleDeletePost(post._id)}
-          className="delete-button"
-        >
-          Delete
-        </button>
+        <button onClick={() => handleEditPost(post)} className="edit-button">Edit</button>
+        <button onClick={() => handleDeletePost(post._id)} className="delete-button">Delete</button>
       </div>
     )}
 
@@ -328,7 +318,8 @@ const BlogPage = () => {
       <button onClick={() => handleAddComment(post._id)}>Post Comment</button>
     </div>
 
-    {editingPost && editingPost._id === post._id ? (
+    {/* Edit Post Form */}
+    {editingPost && editingPost._id === post._id && (
       <div className="edit-post-form">
         <input
           type="text"
@@ -344,14 +335,10 @@ const BlogPage = () => {
         <button onClick={handleSaveEditedPost}>Save</button>
         <button onClick={() => setEditingPost(null)}>Cancel</button>
       </div>
-    ) : (
-      <>
-        <p className="description">{post.content}</p>
-        <p className="author">By {post.author || "Anonymous"}</p>
-      </>
     )}
   </article>
 ))}
+
 
 
         </main>
