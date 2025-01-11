@@ -1,5 +1,6 @@
 import React from 'react';
 import '../index.scss';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
@@ -9,7 +10,9 @@ const Hero = () => {
       Th<span>e</span> Map
     </h1>
     <h4>Your Guide to Global Exploration</h4>
+    <Link to="/blog">
     <button>Explore Now <i className="fa-solid fa-chevron-right"></i></button>
+    </Link>
   </div>
   );
 };
