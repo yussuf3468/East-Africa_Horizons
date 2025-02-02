@@ -1,188 +1,146 @@
-@use "../base" as base;
-
-// Hero Section
-.hero-container {
-  min-height: 100vh;
-  width: 100%;
-  background: url('/src/assets/images/heroImg3.jpeg') center/cover no-repeat;
-  position: relative;
-}
-
-// Images
-img {
-  width: 100%;
-}
-
-// Navbar
 .navbar {
-  @include base.flex-center;
+  background: linear-gradient(to right, #003049, #ffb703); /* Subtle navy to yellow */
+  padding: 1rem 0;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Adds a shadow for separation */
 
-  span {
-    font-family: 'Clicker Script', cursive;
-    font-size: base.$font-size-lg;
-    color: base.$light-color;
-    // margin-left: 1rem;
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
-  h1 {
-    margin-right: 15rem;
-    color: base.$light-color;
-    margin-bottom: 0 !important;
-    font-size: base.$font-size-md;
+  .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffffff;
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
   }
 
-  .navbar-nav {
+  .custom-toggler {
+    display: none;
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 1.5rem;
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .nav-links {
     display: flex;
     align-items: center;
 
-    .nav-item a {
-      margin-left: 15px;
-      color: base.$light-color !important;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-  }
-
-  .form-control {
-    margin-left: 10px;
-  }
-
-  // Toggler Styles
-  .navbar-toggler {
-    color: white;
-    border-color: white;
-
-    &::before,
-    &::after,
-    span {
-      content: '';
-      display: block;
-      height: 2px;
-      width: 20px;
-      background-color: white;
-      margin: 4px auto;
-    }
-  }
-  // Styling for the welcome message
-.welcome-message {
-  font-size: 1.2rem;
-  color: #a8dadc; // Light cyan color for the welcome message
-  font-weight: 600;
-  margin-right: 10px;
-
-  .username {
-    color: #f1faee; // Off-white for the username
-    font-weight: 700;
-    text-transform: capitalize;
-  }
-}
-
-// Styling for the logout button
-.logout-btn {
-  font-size: 0.9rem;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-weight: bold;
-  text-transform: uppercase;
-  transition: background-color 0.3s;
-
-  &:hover {
-    background-color: #ffadad; // Soft red on hover
-  }
-}
-
-}
-
-// Media Queries
-@media (max-width: 996px) {
-  .hero-container {
-    min-height: 70vh;
-  }
-
-  .navbar {
-    .navbar-toggler {
-      align-self: flex-end;
-      margin-bottom: 1rem;
-    }
-
-    h1 {
-      margin-right: 2rem;
-    }
-
-    .navbar-collapse {
+    ul {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-      background-color: rgba(0, 0, 0, 0.8);
-      border-radius: 10px;
-      padding: 1rem;
-    }
+      list-style: none;
+      margin: 0;
+      padding: 0;
 
-    .navbar-nav {
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-      margin-top: 1rem;
-
-      .nav-item {
-        margin: 0.5rem 0;
-        text-align: center;
-        width: 100%;
+      li {
+        margin: 0 1rem;
 
         a {
-          display: block;
-          color: white !important;
-          padding: 0.5rem;
-          background-color: rgba(255, 255, 255, 0.1);
-          border-radius: 5px;
+          color: #ffffff;
+          text-decoration: none;
+          font-size: 1rem;
+          transition: color 0.3s;
 
           &:hover {
-            background-color: rgba(255, 255, 255, 0.2);
+            color: #003049; 
+            text-decoration: underline;
           }
         }
       }
     }
 
-    .d-flex.align-items-center {
-      flex-direction: column;
-      align-items: flex-start;
-      margin-top: 1rem;
+    .nav-actions {
+      display: flex;
+      align-items: center;
+
+      .nav-item {
+        margin-left: 1rem;
+
+        .username {
+          color: #ffffff;
+        }
+      }
 
       .btn {
-        width: 100%;
-        text-align: left;
-        margin-bottom: 0.5rem;
-      }
+        margin-left: 1rem;
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background 0.3s, color 0.3s;
 
-      .btn-outline-secondary {
-        background-color: transparent;
-        color: white;
-        border-color: white;
+        &.btn-primary {
+          background: #303a01;
+          color: #e0e5e7;
 
-        i {
-          margin-right: 0.5rem;
+          &:hover {
+            background: #d62828; /* Subtle red for hover */
+            color: #ffffff;
+          }
         }
 
-        &:hover {
-          background-color: rgba(255, 255, 255, 0.2);
-        }
-      }
+        &.btn-outline {
+          background: #003049;
+          border: 2px solid #ffffff;
+          color: #ffffff;
 
-      // Hide unnecessary buttons
-      .btn-outline-secondary:nth-child(2),
-      .btn-outline-secondary:nth-child(3) {
-        display: none;
+          &:hover {
+            background: #ffffff;
+            color: #003049;
+          }
+        }
       }
     }
-    
   }
-}
 
-@media (max-width: 768px) {
-  .hero-container {
-    min-height: 60vh;
+  // Responsive styles
+  @media (max-width: 768px) {
+    .custom-toggler {
+      display: block;
+    }
+
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      background: #003049; /* Simplified solid navy for mobile */
+      position: absolute;
+      top: 100%;
+      left: 0;
+      z-index: 1000;
+
+      &.show {
+        display: flex;
+      }
+
+      ul {
+        flex-direction: column;
+
+        li {
+          margin: 1rem 0;
+        }
+      }
+
+      .nav-actions {
+        flex-direction: column;
+
+        .nav-item,
+        .btn {
+          margin: 1rem 0;
+        }
+      }
+    }
   }
 }

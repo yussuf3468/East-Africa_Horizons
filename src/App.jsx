@@ -18,6 +18,8 @@ import Categories from './components/Categories';
 import PostCreator from './components/PostCreator';
 import { AuthContext } from './context/AuthContext';
 import NotFound from './components/NotFound'; // 404 Page component
+import Hero from './components/Hero';
+import ArticlePage from './components/ArticlePage ';
 
 function App() {
   const navigate = useNavigate();
@@ -79,52 +81,49 @@ function App() {
   };
 
   return (
-    <Routes>
-      {/* Home page */}
-      <Route
-        path="/"
-        element={
-          <>
-            <Navbar />
-            <Destinations />
-            <BlogPosts />
-            <Frames />
-            <Testimonials />
-            <Newsletter />
-            <Footer />
-          </>
-        }
-      />
-
-      {/* Other Routes */}
-      <Route path="/contact" element={<Contact />} />
-      <Route path="/categories" element={<Categories />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="*" element={<NotFound />} /> {/* Catch-all route for 404 */}
-
-      {/* Write Blog page */}
-      <Route
-        path="/writeBlog"
-        element={
-          <PostCreator
-            onSubmit={handleAddOrUpdatePost} // Handle add/update logic
-            post={editingPost} // Pass the editing post if available
-          />
-        }
-      />
-
-      {/* Blog page */}
-      <Route
-        path="/blog"
-        element={
-          <BlogPage
-            onEdit={(post) => setEditingPost(post)} // Set the post to edit
-            onDelete={handleDeletePost} // Handle deletion
-          />
-        }
-      />
-    </Routes>
+    <>
+      <Navbar />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <Hero />
+              <Destinations />
+              <BlogPosts />
+              <Frames />
+              <Testimonials />
+              <Newsletter />
+              <Footer />
+            </>
+          }
+        />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/categories" element={<Categories />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="*" element={<NotFound />} />
+        <Route
+          path="/writeBlog"
+          element={
+            <PostCreator
+              onSubmit={handleAddOrUpdatePost}
+              post={editingPost}
+            />
+          }
+        />
+        <Route
+          path="/blog"
+          element={
+            <BlogPage
+              onEdit={(post) => setEditingPost(post)}
+              onDelete={handleDeletePost}
+            />
+          }
+        />
+        <Route path="/article/:id" element={<ArticlePage />} /> {/* New Route */}
+      </Routes>
+    </>
   );
 }
 

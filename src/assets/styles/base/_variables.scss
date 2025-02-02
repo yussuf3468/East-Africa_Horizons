@@ -3,16 +3,16 @@
     margin: 0;
     box-sizing: border-box;
 }
-$primary-color: #0c131a;
-$light-color: #fff;
-$light-color-alt: #afb6cd;
-$primary-background-color: #010d1a00;
-$background-custom-color: #0e0f19;
-$secondary-background-color: #252830;
-$hover-light-color: var($light-color);
-$hover-dark-color: var($primary-background-color);
-$transparent-light-color: rgba(255, 255, 255, 0.05);
-$transparent-dark-color: rgba(0, 0, 0, 0.75);
+$primary-color: #1A202C;                // Dark Navy Blue
+$light-color: #F7FAFC;                  // Almost White
+$light-color-alt: #CBD5E0;              // Light Grayish Blue
+$primary-background-color: #2D3748;     // Dark Grayish Blue
+$background-custom-color: #1A202C;      // Dark Navy Blue
+$secondary-background-color: #4A5568;   // Medium Grayish Blue
+$hover-light-color: var(--light-color);
+$hover-dark-color: var(--primary-background-color);
+$transparent-light-color: rgba(247, 250, 252, 0.05);  // Almost White Transparent
+$transparent-dark-color: rgba(45, 55, 72, 0.75);      // Dark Grayish Blue Transparent
 $font-size-xsm: 1.2rem;
 $font-size-sm: 1.6rem;
 $font-size-md: 2rem;
@@ -21,6 +21,6 @@ $font-size-xl: 4rem;
 $gap: 2rem;
 $margin-sm: 1rem;
 $margin-md: 3rem;
-$secondary-color: #393e46;
-$highlight-color: #ffd369;
+$secondary-color: #718096;             // Grayish Blue
+$highlight-color: #ECC94B;             // Golden Yellow
 

@@ -5,7 +5,7 @@ import culture from '../assets/images/cultural.jpg';
 import luxury from '../assets/images/luxury.jpg';
 import wildlife from '../assets/images/wildlife.jpg';
 import mountains from '../assets/images/mountains.jpg';
-import Navbar1 from './Navbar1';
+import Navbar from './Navbar';
 
 
 const Categories = () => {
@@ -20,8 +20,6 @@ const Categories = () => {
 
     return (
         <>
-            <Navbar1 brand={'Categories'}/>
-
             <div className="categories-container">
                 <h2 className="categories-title">Discover Your Next Journey</h2>
                 <p className="categories-subtitle">

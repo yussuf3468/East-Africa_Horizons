@@ -265,9 +265,6 @@ const BlogPage = () => {
 
   return (
     <div className="blog-page">
-
-      <Navbar1 brand={'Blogspace'} />
-
       <div className="container">
         <main className="blog-main">
           {showWriteBlog && loggedInUser && (

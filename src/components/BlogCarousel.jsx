@@ -1,124 +1,91 @@
 import React from "react";
-import heroImage2 from '../assets/images/7hidden.jpg'
-import budgetTrip from '../assets/images/budget trip.jpg'
-import experience from '../assets/images/experience.jpg'
-import gear from '../assets/images/gear.jpg'
-import safety from '../assets/images/safety.jpg'
-import culture from '../assets/images/culture.jpg'
+import { useNavigate } from "react-router-dom";
+import heroImage2 from "../assets/images/7hidden.jpg";
+import budgetTrip from "../assets/images/budget trip.jpg";
+import experience from "../assets/images/experience.jpg";
+import gear from "../assets/images/gear.jpg";
+import safety from "../assets/images/safety.jpg";
+import culture from "../assets/images/culture.jpg";
 
-
+// Array containing article data
+const articles = [
+  {
+    id: 1,
+    title: "7 Hidden Gems You Must Visit This Year",
+    image: heroImage2,
+    description:
+      "Discover the hidden gems around the world that are perfect for travelers seeking unique and less-explored destinations.",
+  },
+  {
+    id: 2,
+    title: "Ultimate Budget Tips for Your Next Adventure",
+    image: budgetTrip,
+    description:
+      "Learn the best ways to save money while traveling without compromising on amazing experiences.",
+  },
+  {
+    id: 3,
+    title: "Immersive Travel Experiences to Transform Your Perspective",
+    image: experience,
+    description:
+      "Find out how immersive travel can open your eyes to new cultures and change the way you see the world.",
+  },
+  {
+    id: 4,
+    title: "Essential Gear Every Traveler Needs for a Smooth Journey",
+    image: gear,
+    description:
+      "Gear up for your travels with this comprehensive guide to must-have items for a hassle-free adventure.",
+  },
+  {
+    id: 5,
+    title: "How to Stay Safe While Traveling Solo",
+    image: safety,
+    description:
+      "Solo travel is exciting! Learn how to keep yourself safe and enjoy your trip to the fullest.",
+  },
+  {
+    id: 6,
+    title: "Exploring Local Culture: A Traveler's Guide to Immersion",
+    image: culture,
+    description:
+      "Understand how to truly immerse yourself in local culture while traveling.",
+  },
+];
 
 const BlogPosts = () => {
+  // Hook for navigation
+  const navigate = useNavigate();
+
+  // Function to handle article click and navigate to the article page
+  const handleArticleClick = (id) => {
+    navigate(`/article/${id}`);
+  };
+
   return (
-    <section className="blog-posts">
-      <h1>
-        Latest Blog Posts <span></span>
-      </h1>
-      <div id="blogCarousel" className="carousel slide" data-bs-ride="carousel">
-        {/* Carousel Inner */}
-        <div className="carousel-inner">
-          {/* Slide 1 */}
-          <div className="carousel-item active">
-            <div className="row">
-              <div className="col-md-4 col-4">
-                <article className="post">
-                    <img
-                      src={heroImage2}
-                      className="d-block w-100"
-                      alt="Blog post image"
-                    />
-                  <div className="content">
-                    <h2>7 Hidden Gems You Must Visit This Year</h2>
-                  </div>
-                </article>
-              </div>
-              <div className="col-md-4 col-4">
-                <article className="post">
-                    <img
-                      src={budgetTrip}
-                      className="d-block w-100"
-                      alt="Blog post image"
-                    />
-                  <div className="content">
-                    <h2>Ultimate Budget Tips for Your Next Adventure</h2>
-                  </div>
-                </article>
-              </div>
-              <div className="col-md-4 col-4">
-                <article className="post">
-                    <img
-                      src={experience}
-                      className="d-block w-100"
-                      alt="Blog post image"
-                    />
-                  <div className="content">
-                    <h2>Immersive Travel Experiences to Transform Your Perspective</h2>
-                  </div>
-                </article>
-              </div>
+    <section className="blog-posts-section">
+      <div className="blog-posts">
+        <h1>Latest Blog Posts</h1>
+        <div className="row">
+          {articles.map((article) => (
+            <div className="col-md-4 col-4" key={article.id}>
+              <article
+                className="post"
+                onClick={() => handleArticleClick(article.id)}
+              >
+                <img
+                  src={article.image}
+                  className="d-block w-100"
+                  alt={article.title}
+                />
+                <div className="content">
+                  <h2>{article.title}</h2>
+                  {/* <p>{article.description}</p> */}
+                </div>
+              </article>
             </div>
-          </div>
-
-          {/* Slide 2 */}
-          <div className="carousel-item">
-            <div className="row">
-              <div className="col-md-4 col-4">
-                <article className="post">
-                    <img
-                      src={gear}
-                      className="d-block w-100"
-                      alt="Blog post image"
-                    />
-                  <div className="content">
-                    <h2>Essential Gear Every Traveler Needs for a Smooth Journey</h2>
-                  </div>
-                </article>
-              </div>
-              <div className="col-md-4 col-4">
-                <article className="post">
-                    <img
-                      src={safety}
-                      className="d-block w-100"
-                      alt="Blog post image"
-                    />
-                  <div className="content">
-                    <h2>How to Stay Safe While Traveling Solo</h2>
-                  </div>
-                </article>
-              </div>
-              <div className="col-md-4 col-4">
-                <article className="post">
-                  <img
-                    src={culture}
-                    className="d-block w-100"
-                    alt="Blog post image"
-                  />
-                  <div className="content">
-                    <h2>Exploring Local Culture: A Traveler's Guide to Immersion</h2>
-                  </div>
-                </article>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
-
-        {/* Carousel Controls */}
-        <button
-          className="carousel-control-prev"
-          type="button"
-          data-bs-target="#blogCarousel"
-          data-bs-slide="prev"
-        >
-          <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-        </button>
-        <button
-          className="carousel-control-next"
-          type="button"
-          data-bs-target="#blogCarousel"
-          data-bs-slide="next"
-        >
-          <span className="carousel-control-next-icon" aria-hidden="true"></span>
-        </button>
       </div>
     </section>
   );

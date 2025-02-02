@@ -1,68 +1,78 @@
-@use "../base" as base;
-.hero-section {
-    @include base.flex-center; /* Custom mixin for centering */
-    flex-direction: column;
-    margin: 0.2rem;
-  
-    h1 {
-      font-family: "Montserrat", sans-serif;
-      font-size: 5rem; /* Large for desktop */
-      color: base.$light-color;
-      text-align: center;
-      font-weight: 600;
+.hero {
+  height: 100vh; /* Full viewport height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  position: relative;
+  background-image: url('../assets/images/hero5.jpg'); /* Hero image */
+  background-size: cover; /* Ensure image covers the whole section */
+  background-position: center;
+  background-repeat: no-repeat;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Overlay for better text visibility */
+    z-index: 1;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2; /* Content above overlay */
+    max-width: 600px; /* Optional: control max width for text content */
+
+    .hero-title {
+      font-size: 3rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px rgba(0, 0, 0, 0.5);
     }
-  
-    h4 {
-      font-size: 1.8rem;
-      color: base.$light-color;
-      text-align: center;
+
+    .hero-subtitle {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
     }
-  
-    button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      background-color: transparent;
-      border: 1px solid base.$light-color;
-      color: base.$light-color;
-      cursor: pointer;
+
+    .btn {
+      padding: 0.8rem 1.5rem;
       font-size: 1rem;
-      border-radius: 20px;
-  
+      font-weight: bold;
+      border-radius: 5px;
+      text-transform: uppercase;
+      background: #ffb703;
+      color: #003049;
+      transition: all 0.3s ease;
+
       &:hover {
-        background-color: #194574;
+        background: #d62828;
+        color: white;
       }
     }
-  
-    // Responsive Design for Tablets
-  @media (max-width: 1024px) {
-    h1 {
-      font-size: 3rem;
-    }
-
-    h4 {
-      font-size: 1.25rem;
-    }
-
-    button {
-      padding: 0.6rem 1.25rem;
-      font-size: 0.9rem;
-    }
   }
 
-  // Responsive Design for Mobile
+  /* Mobile-specific styles */
   @media (max-width: 768px) {
-    h1 {
-      font-size: 2.5rem;
+    height: 50vh; /* Adjust height on mobile screens */
+    background-size: contain; /* Ensure the image fits well on smaller screens */
+    background-position: center top; /* Align the image towards the top */
+
+    .hero-title {
+      font-size: 2rem; /* Smaller title on mobile */
     }
 
-    h4 {
-      font-size: 1.2rem;
+    .hero-subtitle {
+      font-size: 1rem; /* Smaller subtitle on mobile */
     }
 
-    button {
-      padding: 0.5rem 1rem;
-      font-size: 0.85rem;
+    .btn {
+      font-size: 0.9rem; /* Smaller button text */
+      padding: 0.6rem 1.2rem; /* Adjust button padding */
     }
   }
-  }
-  
+}
