@@ -2,7 +2,6 @@
 
 **East Africa Horizons** is a full-stack travel blogging platform designed to showcase the breathtaking landscapes, cultures, and experiences of East Africa. Built with travelers in mind, it allows users to create, explore, and interact with blog posts highlighting destinations across Kenya, Tanzania, Uganda, Rwanda, and beyond.
 
-![East Africa Horizons Banner](link-to-your-screenshot-or-banner)
 
 ## ✨ Features
 
@@ -51,7 +50,7 @@
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/east-africa-horizons.git
+git clone https://github.com/yussuf3468/east-africa-horizons.git
 cd east-africa-horizons
 Frontend Setup
 bash
@@ -69,9 +68,6 @@ npm install
 # Create a .env file with the following:
 # MONGO_URI=
 # JWT_SECRET=
-# CLOUDINARY_CLOUD_NAME=
-# CLOUDINARY_API_KEY=
-# CLOUDINARY_API_SECRET=
 
 npm run dev
 📁 Folder Structure
