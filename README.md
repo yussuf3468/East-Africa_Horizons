@@ -6,11 +6,8 @@
 ## ✨ Features
 
 - 📝 User-authenticated travel blogs (create, edit, delete)
-- 📸 Photo & video uploads using Multer and Cloudinary
+- 📸 Photo & video uploads using Multer
 - 💬 Commenting & liking system
-- 🧑‍🤝‍🧑 Follow and unfollow users
-- 🔔 Real-time notifications for likes, comments, and followers
-- 🔍 Search and filter blogs by location or tags
 - 📱 Fully responsive UI with mobile-first design
 
 ## 🔧 Tech Stack
